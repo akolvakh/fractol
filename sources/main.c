@@ -3,19 +3,19 @@
 
 int				main(int argc, char **argv)
 {
-	t_a *exp;
+	t_dataset *data;
 
 	if (argc < 2)
 		sys_message(USAGE);
 	if (argc > 2)//
 		sys_error(INPUT);
-	if (!(exp = (t_a *)ft_memalloc(sizeof(t_a))))
+	if (!(data = (t_dataset *)ft_memalloc(sizeof(t_dataset))))
 		sys_error(MALLOC);
-	exp->color = 1;
+	data->color = 1;
 	if (argc == 2)
 	{
-		sys_validator(argv[1], exp);
-		init_main(exp);
-		display(exp);
+		sys_validator(argv[1], data);
+		init_main(data);
+		display(data);
 	}
 }

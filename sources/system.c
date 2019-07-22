@@ -1,13 +1,13 @@
 #include "fractol.h"
 
-int		sys_close(t_a *exp)
+int		sys_close(t_dataset *data)
 {
-	mlx_destroy_window(exp->mlx, exp->win);
+	mlx_destroy_window(data->mlx, data->win);
 	sys_error(FINISH);
 	return (0);
 }
 
-void	sys_validator(char *str, t_a *exp)
+void	sys_validator(char *str, t_dataset *data)
 {
 	if ((!(ft_strcmp(str, "mandel") == 0)) && (!(ft_strcmp(str, "julia") == 0))
 			&& (!(ft_strcmp(str, "ship") == 0)) && (!(ft_strcmp(str, "carpet")
@@ -16,19 +16,19 @@ void	sys_validator(char *str, t_a *exp)
 			(!(ft_strcmp(str, "mandelcubed") == 0)))
 		sys_error(VALUE);
 	if (ft_strcmp(str, "julia") == 0)
-		exp->fractol = 1;
+		data->fractol = 1;
 	if (ft_strcmp(str, "mandel") == 0)
-		exp->fractol = 2;
+		data->fractol = 2;
 	if (ft_strcmp(str, "ship") == 0)
-		exp->fractol = 3;
+		data->fractol = 3;
 	if (ft_strcmp(str, "carpet") == 0)
-		exp->fractol = 4;
+		data->fractol = 4;
 	if (ft_strcmp(str, "tricorn") == 0)
-		exp->fractol = 5;
+		data->fractol = 5;
 	if (ft_strcmp(str, "juliacubed") == 0)
-		exp->fractol = 6;
+		data->fractol = 6;
 	if (ft_strcmp(str, "mandelcubed") == 0)
-		exp->fractol = 7;
+		data->fractol = 7;
 }
 
 void	sys_error(int error)
@@ -60,20 +60,20 @@ void	sys_message(int message)
 		ft_putstr(msg);
 }
 
-void	sys_option(t_a *exp)
+void	sys_option(t_dataset *data)
 {
-	if (exp->fractol == 1)
-		juliafx(exp);
-	if (exp->fractol == 2)
-		mandelfx(exp);
-	if (exp->fractol == 3)
-		shipfx(exp);
-	if (exp->fractol == 4)
-		carpetfx(exp);
-	if (exp->fractol == 5)
-		tricornfx(exp);
-	if (exp->fractol == 6)
-		juliacubedfx(exp);
-	if (exp->fractol == 7)
-		mandelcubedfx(exp);
+	if (data->fractol == 1)
+		juliafx(data);
+	if (data->fractol == 2)
+		mandelfx(data);
+	if (data->fractol == 3)
+		shipfx(data);
+	if (data->fractol == 4)
+		carpetfx(data);
+	if (data->fractol == 5)
+		tricornfx(data);
+	if (data->fractol == 6)
+		juliacubedfx(data);
+	if (data->fractol == 7)
+		mandelcubedfx(data);
 }

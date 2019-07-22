@@ -51,7 +51,7 @@ enum				e_moves
 	UP = 13, DOWN = 14
 };
 
-typedef struct		s_a
+typedef struct		s_dataset
 {
 	void			*mlx;
 	void			*win;
@@ -94,58 +94,55 @@ typedef struct		s_a
 	int				menu_sl;
 	int				menu_end;
 	int				menu_bpp;
-}					t_a;
 
-typedef struct		s_color
-{
-	unsigned char	chan[3];
-}					t_c;
+		unsigned char	chan[3];
+}					t_dataset;
 
-void				putimage(t_a *exp, int x, int y, int color);
+void				putimage(t_dataset *data, int x, int y, int color);
 
-unsigned int		colormagic(int i, double x, double y);
+unsigned int		colormagic(t_dataset *data,int i, double x, double y);
 
-int					render_menu(t_a *exp);
+int					render_menu(t_dataset *data);
 
-void				init_julia(t_a *exp);
-void				init_mandel(t_a *exp);
-void				init_ship(t_a *exp);
-void				init_carpet(t_a *exp);
-void				init_main(t_a *exp);
+void				init_julia(t_dataset *data);
+void				init_mandel(t_dataset *data);
+void				init_ship(t_dataset *data);
+void				init_carpet(t_dataset *data);
+void				init_main(t_dataset *data);
 
-int					mousehook(int mousekey, int x, int y, t_a *exp);
-int					keyhooks3(int key, t_a *exp);
-int					keyhooks2(int key, t_a *exp);
-int					keyhooks(int key, t_a *exp);
+int					mousehook(int mousekey, int x, int y, t_dataset *data);
+int					keyhooks3(int key, t_dataset *data);
+int					keyhooks2(int key, t_dataset *data);
+int					keyhooks(int key, t_dataset *data);
 
-int					isfilled(int x, int	y, t_a *exp);
-void				carpetfx(t_a *exp);
-void				tricornfx(t_a *exp);
-void				juliafx(t_a *exp);
-void				mandelfx(t_a *exp);
-void				shipfx(t_a *exp);
-void				juliacubedfx(t_a *exp);
-void				mandelcubedfx(t_a *exp);
+int					isfilled(int x, int	y, t_dataset *data);
+void				carpetfx(t_dataset *data);
+void				tricornfx(t_dataset *data);
+void				juliafx(t_dataset *data);
+void				mandelfx(t_dataset *data);
+void				shipfx(t_dataset *data);
+void				juliacubedfx(t_dataset *data);
+void				mandelcubedfx(t_dataset *data);
 
 
-void				zoomin(int x, int y, t_a *exp);
-void				zoomout(int x, int y, t_a *exp);
-int					motion(int x, int y, t_a *exp);
+void				zoomin(int x, int y, t_dataset *data);
+void				zoomout(int x, int y, t_dataset *data);
+int					motion(int x, int y, t_dataset *data);
 
 
-void				mandelassign(t_a *exp);
+void				mandelassign(t_dataset *data);
 
 
-void				sys_validator(char *str, t_a *exp);
-int					sys_close(t_a *exp);
+void				sys_validator(char *str, t_dataset *data);
+int					sys_close(t_dataset *data);
 void				sys_error(int error);
 void				sys_message(int message);
-void				sys_option(t_a *exp);
+void				sys_option(t_dataset *data);
 
 
-void				display(t_a *exp);
-void				render_interface(t_a *exp);
-void				rendering(t_a *exp);
+void				display(t_dataset *data);
+void				render_interface(t_dataset *data);
+void				rendering(t_dataset *data);
 
 
 #endif

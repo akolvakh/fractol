@@ -1,53 +1,53 @@
 #include "fractol.h"
 
-void	init_julia(t_a *exp)
+void	init_julia(t_dataset *data)
 {
-	exp->zoom = 1;
-	exp->movex = 0;
-	exp->movey = 0;
-	exp->maxinter = 15;
-	exp->cre = -0.7;
-	exp->cim = 0.27015;
+	data->zoom = 1;
+	data->movex = 0;
+	data->movey = 0;
+	data->maxinter = 15;
+	data->cre = -0.7;
+	data->cim = 0.27015;
 }
 
-void	init_mandel(t_a *exp)
+void	init_mandel(t_dataset *data)
 {
-	exp->zoom = 1;
-	exp->movex = 0;
-	exp->movey = 0;
-	exp->maxinter = 15;
+	data->zoom = 1;
+	data->movex = 0;
+	data->movey = 0;
+	data->maxinter = 15;
 }
 
-void	init_ship(t_a *exp)
+void	init_ship(t_dataset *data)
 {
-	exp->zoom = 1;
-	exp->movex = 0;
-	exp->movey = 0;
-	exp->maxinter = 15;
+	data->zoom = 1;
+	data->movex = 0;
+	data->movey = 0;
+	data->maxinter = 15;
 }
 
-void	init_carpet(t_a *exp)
+void	init_carpet(t_dataset *data)
 {
-	exp->zoom = 1;
-	exp->movex = 0;
-	exp->movey = 0;
-	exp->maxinter = 3;
+	data->zoom = 1;
+	data->movex = 0;
+	data->movey = 0;
+	data->maxinter = 3;
 }
 
-void	init_main(t_a *exp)
+void	init_main(t_dataset *data)
 {
-	if (exp->fractol == 1)
-		init_julia(exp);
-	if (exp->fractol == 2)
-		init_mandel(exp);
-	if (exp->fractol == 3)
-		init_ship(exp);
-	if (exp->fractol == 4)
-		init_carpet(exp);
-	if (exp->fractol == 5)
-		init_mandel(exp);
-	if (exp->fractol == 6)
-		init_julia(exp);
-	if (exp->fractol == 7)
-		init_mandel(exp);
+	if (data->fractol == 1)
+		init_julia(data);
+	if (data->fractol == 2)
+		init_mandel(data);
+	if (data->fractol == 3)
+		init_ship(data);
+	if (data->fractol == 4)
+		init_carpet(data);
+	if (data->fractol == 5)
+		init_mandel(data);
+	if (data->fractol == 6)
+		init_julia(data);
+	if (data->fractol == 7)
+		init_mandel(data);
 }

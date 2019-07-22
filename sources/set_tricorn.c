@@ -1,38 +1,38 @@
 #include "fractol.h"
 
-static void		tricornmagic(t_a *exp)
+static void		tricornmagic(t_dataset *data)
 {
-	exp->oldre = exp->newre;
-	exp->oldim = exp->newim * -1;
-	exp->newre = exp->oldre * exp->oldre - exp->oldim * exp->oldim + exp->pr;
-	exp->newim = 2 * exp->oldre * exp->oldim + exp->pi;
+	data->oldre = data->newre;
+	data->oldim = data->newim * -1;
+	data->newre = data->oldre * data->oldre - data->oldim * data->oldim + data->pr;
+	data->newim = 2 * data->oldre * data->oldim + data->pi;
 }
 
-void			tricornfx(t_a *exp)
+void			tricornfx(t_dataset *data)
 {
-	exp->y = -1;
-	while (++exp->y < HEIGHT)
+	data->y = -1;
+	while (++data->y < HEIGHT)
 	{
-		exp->x = -1;
-		while (++exp->x < WIDTH)
+		data->x = -1;
+		while (++data->x < WIDTH)
 		{
-			exp->pr = 1.5 * (exp->x - WIDTH / 2) /
-				(0.5 * exp->zoom * WIDTH) + exp->movex;
-			exp->pi = (exp->y - HEIGHT / 2) /
-				(0.5 * exp->zoom * HEIGHT) + exp->movey;
-			mandelassign(exp);
-			exp->i = -1;
-			while (++exp->i < exp->maxinter)
+			data->pr = 1.5 * (data->x - WIDTH / 2) /
+				(0.5 * data->zoom * WIDTH) + data->movex;
+			data->pi = (data->y - HEIGHT / 2) /
+				(0.5 * data->zoom * HEIGHT) + data->movey;
+			mandelassign(data);
+			data->i = -1;
+			while (++data->i < data->maxinter)
 			{
-				tricornmagic(exp);
-				if ((exp->newre * exp->newre + exp->newim * exp->newim) > 4)
+				tricornmagic(data);
+				if ((data->newre * data->newre + data->newim * data->newim) > 4)
 					break ;
 			}
-			if (exp->i < exp->maxinter)
-				putimage(exp, exp->x, exp->y, (colormagic((exp->color *
-					exp->i), exp->x, exp->y)));
+			if (data->i < data->maxinter)
+				putimage(data, data->x, data->y, (colormagic(data, (data->color *
+					data->i), data->x, data->y)));
 			else
-				putimage(exp, exp->x, exp->y, 200);
+				putimage(data, data->x, data->y, 200);
 		}
 	}
 }

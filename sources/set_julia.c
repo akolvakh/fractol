@@ -1,76 +1,76 @@
 #include "fractol.h"
 
-static void		juliamagic(t_a *exp)
+static void		juliamagic(t_dataset *data)
 {
-	exp->oldre = exp->newre;
-	exp->oldim = exp->newim;
-	exp->newre = exp->oldre * exp->oldre - exp->oldim * exp->oldim + exp->cre;
-	exp->newim = 2 * exp->oldre * exp->oldim + exp->cim;
+	data->oldre = data->newre;
+	data->oldim = data->newim;
+	data->newre = data->oldre * data->oldre - data->oldim * data->oldim + data->cre;
+	data->newim = 2 * data->oldre * data->oldim + data->cim;
 }
 
-void			juliafx(t_a *exp)
+void			juliafx(t_dataset *data)
 {
-	exp->y = -1;
-	while (++exp->y < HEIGHT)
+	data->y = -1;
+	while (++data->y < HEIGHT)
 	{
-		exp->x = -1;
-		while (++exp->x < WIDTH)
+		data->x = -1;
+		while (++data->x < WIDTH)
 		{
-			exp->newre = 1.5 * (exp->x - WIDTH / 2) /
-				(0.5 * exp->zoom * WIDTH) + exp->movex;
-			exp->newim = (exp->y - HEIGHT / 2) /
-				(0.5 * exp->zoom * HEIGHT) + exp->movey;
-			exp->i = -1;
-			while (++exp->i < exp->maxinter)
+			data->newre = 1.5 * (data->x - WIDTH / 2) /
+				(0.5 * data->zoom * WIDTH) + data->movex;
+			data->newim = (data->y - HEIGHT / 2) /
+				(0.5 * data->zoom * HEIGHT) + data->movey;
+			data->i = -1;
+			while (++data->i < data->maxinter)
 			{
-				juliamagic(exp);
-				if ((exp->newre * exp->newre + exp->newim) > 4)
+				juliamagic(data);
+				if ((data->newre * data->newre + data->newim) > 4)
 					break ;
 			}
-			if (exp->i < exp->maxinter)
-				putimage(exp, exp->x, exp->y, (colormagic((exp->i *
-					exp->color), exp->x, exp->y)));
+			if (data->i < data->maxinter)
+				putimage(data, data->x, data->y, (colormagic(data, (data->i *
+					data->color), data->x, data->y)));
 			else
-				putimage(exp, exp->x, exp->y, 0x000000);
+				putimage(data, data->x, data->y, 0x000000);
 		}
 	}
 }
 
-static void		juliacubedfun(t_a *exp)
+static void		juliacubedfun(t_dataset *data)
 {
-	exp->oldre = exp->newre;
-	exp->oldim = exp->newim;
-	exp->newre = (exp->oldre * exp->oldre * exp->oldre) -
-		(exp->oldim * exp->oldim * exp->oldre) -
-		(2 * exp->oldre * exp->oldim * exp->oldim) + exp->cre;
-	exp->newim = (3 * exp->oldre * exp->oldre * exp->oldim) -
-		(exp->oldim * exp->oldim * exp->oldim) + exp->cim;
+	data->oldre = data->newre;
+	data->oldim = data->newim;
+	data->newre = (data->oldre * data->oldre * data->oldre) -
+		(data->oldim * data->oldim * data->oldre) -
+		(2 * data->oldre * data->oldim * data->oldim) + data->cre;
+	data->newim = (3 * data->oldre * data->oldre * data->oldim) -
+		(data->oldim * data->oldim * data->oldim) + data->cim;
 }
 
-void			juliacubedfx(t_a *exp)
+void			juliacubedfx(t_dataset *data)
 {
-	exp->y = -1;
-	while (++exp->y < HEIGHT)
+	data->y = -1;
+	while (++data->y < HEIGHT)
 	{
-		exp->x = -1;
-		while (++exp->x < WIDTH)
+		data->x = -1;
+		while (++data->x < WIDTH)
 		{
-			exp->newre = 1.5 * (exp->x - WIDTH / 2) /
-				(0.5 * exp->zoom * WIDTH) + exp->movex;
-			exp->newim = (exp->y - HEIGHT / 2) /
-				(0.5 * exp->zoom * HEIGHT) + exp->movey;
-			exp->i = -1;
-			while (++exp->i < exp->maxinter)
+			data->newre = 1.5 * (data->x - WIDTH / 2) /
+				(0.5 * data->zoom * WIDTH) + data->movex;
+			data->newim = (data->y - HEIGHT / 2) /
+				(0.5 * data->zoom * HEIGHT) + data->movey;
+			data->i = -1;
+			while (++data->i < data->maxinter)
 			{
-				juliacubedfun(exp);
-				if ((exp->newre * exp->newre + exp->newim) > 4)
+				juliacubedfun(data);
+				if ((data->newre * data->newre + data->newim) > 4)
 					break ;
 			}
-			if (exp->i < exp->maxinter)
-				putimage(exp, exp->x, exp->y, (colormagic((exp->i *
-					exp->color), exp->x, exp->y)));
+			if (data->i < data->maxinter)
+				putimage(data, data->x, data->y, (colormagic(data, (data->i *
+					data->color), data->x, data->y)));
 			else
-				putimage(exp, exp->x, exp->y, 0x000000);
+				putimage(data, data->x, data->y, 0x000000);
 		}
 	}
 }

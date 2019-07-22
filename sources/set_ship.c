@@ -1,47 +1,47 @@
 #include "fractol.h"
 
-static void		shipmagic(t_a *exp)
+static void		shipmagic(t_dataset *data)
 {
-	exp->oldre = exp->newre;
-	exp->oldim = exp->newim;
-	exp->newre = exp->oldre * exp->oldre -
-		exp->oldim * exp->oldim + exp->pr;
-	exp->newim = fabs(2 * exp->oldre * exp->oldim) + exp->pi;
+	data->oldre = data->newre;
+	data->oldim = data->newim;
+	data->newre = data->oldre * data->oldre -
+		data->oldim * data->oldim + data->pr;
+	data->newim = fabs(2 * data->oldre * data->oldim) + data->pi;
 }
 
-static void		shipassign(t_a *exp)
+static void		shipassign(t_dataset *data)
 {
-	exp->oldim = 0;
-	exp->oldre = exp->oldim;
-	exp->newim = exp->oldre;
-	exp->newre = exp->newim;
+	data->oldim = 0;
+	data->oldre = data->oldim;
+	data->newim = data->oldre;
+	data->newre = data->newim;
 }
 
-void			shipfx(t_a *exp)
+void			shipfx(t_dataset *data)
 {
-	exp->y = -1;
-	while (++exp->y < HEIGHT)
+	data->y = -1;
+	while (++data->y < HEIGHT)
 	{
-		exp->x = -1;
-		while (++exp->x < WIDTH)
+		data->x = -1;
+		while (++data->x < WIDTH)
 		{
-			exp->pr = 1.5 * (exp->x - WIDTH / 2) /
-				(0.5 * exp->zoom * WIDTH) + exp->movex;
-			exp->pi = (exp->y - HEIGHT / 2) /
-				(0.5 * exp->zoom * HEIGHT) + exp->movey;
-			shipassign(exp);
-			exp->i = -1;
-			while (++exp->i < exp->maxinter)
+			data->pr = 1.5 * (data->x - WIDTH / 2) /
+				(0.5 * data->zoom * WIDTH) + data->movex;
+			data->pi = (data->y - HEIGHT / 2) /
+				(0.5 * data->zoom * HEIGHT) + data->movey;
+			shipassign(data);
+			data->i = -1;
+			while (++data->i < data->maxinter)
 			{
-				shipmagic(exp);
-				if ((exp->newre * exp->newre + exp->newim * exp->newim) > 4)
+				shipmagic(data);
+				if ((data->newre * data->newre + data->newim * data->newim) > 4)
 					break ;
 			}
-			if (exp->i < exp->maxinter)
-				putimage(exp, exp->x, exp->y, (colormagic((exp->color *
-					exp->i), exp->x, exp->y)));
+			if (data->i < data->maxinter)
+				putimage(data, data->x, data->y, (colormagic(data, (data->color *
+					data->i), data->x, data->y)));
 			else
-				putimage(exp, exp->x, exp->y, 200);
+				putimage(data, data->x, data->y, 200);
 		}
 	}
 }
