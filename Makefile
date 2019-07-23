@@ -41,51 +41,56 @@ controls.c\
 initialization.c\
 manipulation.c\
 system.c\
-pipeline.c\
-core.c
+pipeline.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
 OBJ_DIR = objects/
 OBJ_LIST = $(patsubst %.c, %.o, $(SRC_LIST))
 OBJ	= $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
+# COLORS
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ_DIR) $(OBJ)
 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJ) -o $(NAME)
-	@echo "\n$(NAME): object files were created"
-	@echo "$(NAME): $(NAME) was created"
+	@echo "\n$(NAME): $(GREEN) object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN) $(NAME) was created$(RESET)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(NAME): $(OBJ_DIR) was created"
+	@echo "$(NAME): $(GREEN) $(OBJ_DIR) was created$(RESET)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(H)
 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
-	@echo ".\c"
+	@echo "$(GREEN).\c$(RESET)"
 
 $(LIBFT):
-	@echo "$(NAME): Creating $(LIBFT)..."
+	@echo "$(NAME): $(GREEN) Creating $(LIBFT)...$(RESET)"
 	@$(MAKE) -sC $(LIBFT_DIRECTORY)
 
 $(MINILIBX):
-	@echo "$(NAME): Creating $(MINILIBX)..."
+	@echo "$(NAME): $(GREEN) Creating $(MINILIBX)...$(RESET)"
 	@$(MAKE) -sC $(MINILIBX_DIRECTORY)
 
 clean:
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
 	@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
 	@rm -rf $(OBJ_DIR)
-	@echo "$(NAME): $(OBJ_DIR) was deleted"
-	@echo "$(NAME): object files were deleted"
+	@echo "$(NAME): $(RED)$(OBJ_DIR) was deleted$(RESET)"
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
 	@rm -f $(MINILIBX)
-	@echo "$(NAME): $(MINILIBX) was deleted"
+	@echo "$(NAME): $(RED) $(MINILIBX) was deleted$(RESET)"
 	@rm -f $(LIBFT)
-	@echo "$(NAME): $(LIBFT) was deleted"
+	@echo "$(NAME): $(RED) $(LIBFT) was deleted$(RESET)"
 	@rm -f $(NAME)
-	@echo "$(NAME): $(NAME) was deleted"
+	@echo "$(NAME): $(RED) $(NAME) was deleted$(RESET)"
 
 re:
 	@$(MAKE) fclean

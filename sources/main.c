@@ -7,7 +7,7 @@ int				main(int argc, char **argv)
 
 	if (argc < 2)
 		sys_message(USAGE);
-	if (argc > 2)//
+	if (argc > 2)
 		sys_error(INPUT);
 	if (!(data = (t_dataset *)ft_memalloc(sizeof(t_dataset))))
 		sys_error(MALLOC);
@@ -16,6 +16,6 @@ int				main(int argc, char **argv)
 	{
 		sys_validator(argv[1], data);
 		init_main(data);
-		display(data);
+		render_display(data);
 	}
 }

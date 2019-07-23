@@ -17,7 +17,7 @@ static void		shipassign(t_dataset *data)
 	data->newre = data->newim;
 }
 
-void			shipfx(t_dataset *data)
+void			calculation_ship(t_dataset *data)
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
@@ -31,17 +31,17 @@ void			shipfx(t_dataset *data)
 				(0.5 * data->zoom * HEIGHT) + data->movey;
 			shipassign(data);
 			data->i = -1;
-			while (++data->i < data->maxinter)
+			while (++data->i < data->iteration)
 			{
 				shipmagic(data);
 				if ((data->newre * data->newre + data->newim * data->newim) > 4)
 					break ;
 			}
-			if (data->i < data->maxinter)
-				putimage(data, data->x, data->y, (colormagic(data, (data->color *
+			if (data->i < data->iteration)
+				render_image(data, data->x, data->y, (render_color(data, (data->color *
 					data->i), data->x, data->y)));
 			else
-				putimage(data, data->x, data->y, 200);
+				render_image(data, data->x, data->y, 200);
 		}
 	}
 }

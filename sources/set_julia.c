@@ -8,7 +8,7 @@ static void		juliamagic(t_dataset *data)
 	data->newim = 2 * data->oldre * data->oldim + data->cim;
 }
 
-void			juliafx(t_dataset *data)
+void			calculation_julia(t_dataset *data)
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
@@ -21,17 +21,17 @@ void			juliafx(t_dataset *data)
 			data->newim = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
 			data->i = -1;
-			while (++data->i < data->maxinter)
+			while (++data->i < data->iteration)
 			{
 				juliamagic(data);
 				if ((data->newre * data->newre + data->newim) > 4)
 					break ;
 			}
-			if (data->i < data->maxinter)
-				putimage(data, data->x, data->y, (colormagic(data, (data->i *
+			if (data->i < data->iteration)
+				render_image(data, data->x, data->y, (render_color(data, (data->i *
 					data->color), data->x, data->y)));
 			else
-				putimage(data, data->x, data->y, 0x000000);
+				render_image(data, data->x, data->y, 0x000000);
 		}
 	}
 }
@@ -47,7 +47,7 @@ static void		juliacubedfun(t_dataset *data)
 		(data->oldim * data->oldim * data->oldim) + data->cim;
 }
 
-void			juliacubedfx(t_dataset *data)
+void			calculation_juliacubed(t_dataset *data)
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
@@ -60,17 +60,17 @@ void			juliacubedfx(t_dataset *data)
 			data->newim = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
 			data->i = -1;
-			while (++data->i < data->maxinter)
+			while (++data->i < data->iteration)
 			{
 				juliacubedfun(data);
 				if ((data->newre * data->newre + data->newim) > 4)
 					break ;
 			}
-			if (data->i < data->maxinter)
-				putimage(data, data->x, data->y, (colormagic(data, (data->i *
+			if (data->i < data->iteration)
+				render_image(data, data->x, data->y, (render_color(data, (data->i *
 					data->color), data->x, data->y)));
 			else
-				putimage(data, data->x, data->y, 0x000000);
+				render_image(data, data->x, data->y, 0x000000);
 		}
 	}
 }

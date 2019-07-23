@@ -34,7 +34,7 @@ int		motion(int x, int y, t_dataset *data)
 				(((double)HEIGHT * 2) + data->y);
 			data->cim = ((data->clicky + data->y) - HEIGHT) /
 				((double)HEIGHT * 2);
-			rendering(data);	
+			render_scene(data);	
 		}
 	}
 	return (0);
