@@ -1,3 +1,7 @@
+//review this file
+//norm done
+//review sys_validator & sys_option
+
 #include "fractol.h"
 
 int		sys_close(t_dataset *data)
@@ -7,7 +11,7 @@ int		sys_close(t_dataset *data)
 	return (0);
 }
 
-void	sys_validator(char *str, t_dataset *data)//
+void	sys_validator(char *str, t_dataset *data)
 {
 	if ((!(ft_strcmp(str, "mandel") == 0)) && (!(ft_strcmp(str, "julia") == 0))
 			&& (!(ft_strcmp(str, "ship") == 0)) && (!(ft_strcmp(str, "carpet")
@@ -31,7 +35,7 @@ void	sys_validator(char *str, t_dataset *data)//
 		data->fractol = MANDELCUBED;
 }
 
-void	sys_error(int error)//
+void	sys_error(int error)
 {
 	char *msg;
 
@@ -53,7 +57,7 @@ void	sys_error(int error)//
 	exit(-1);
 }
 
-void	sys_message(int message)//
+void	sys_message(int message)
 {
 	char *msg;
 
@@ -71,7 +75,7 @@ void	sys_message(int message)//
 		ft_putstr(msg);
 }
 
-void	sys_option(t_dataset *data)//
+void	sys_option(t_dataset *data)
 {
 	if (data->fractol == MANDELCUBED)
 		calculation_mandelcubed(data);

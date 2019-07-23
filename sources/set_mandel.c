@@ -1,6 +1,9 @@
+//norm done
+//review formulas
+
 #include "fractol.h"
 
-void		mandelassign(t_dataset *data)
+void			mandelassign(t_dataset *data)
 {
 	data->oldim = 0;
 	data->oldre = data->oldim;

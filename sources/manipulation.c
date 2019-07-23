@@ -1,3 +1,7 @@
+//review this file
+//change name of functions
+//norm done
+
 #include "fractol.h"
 
 void	zoomin(int x, int y, t_dataset *data)

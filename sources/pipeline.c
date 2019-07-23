@@ -1,3 +1,7 @@
+//review this file
+//norm done
+//revie render_image & render_color (to wold)
+
 #include "fractol.h"
 
 void			render_image(t_dataset *data, int x, int y, int color)
@@ -25,7 +29,7 @@ unsigned int	render_color(t_dataset *data,int i, double x, double y)
 	return (color);
 }
 
-void	render_interface(t_dataset *data)
+void			render_interface(t_dataset *data)
 {
 	data->menu = mlx_xpm_file_to_image(data->mlx, "./textures/menu.xpm",
 			&(data->menu_w), &(data->menu_h));
@@ -36,7 +40,7 @@ void	render_interface(t_dataset *data)
 	mlx_string_put(data->mlx, data->win, 70, 47, 0xFFFFFF, ft_itoa(data->zoom));
 }
 
-void	render_scene(t_dataset *data)
+void			render_scene(t_dataset *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
@@ -46,7 +50,7 @@ void	render_scene(t_dataset *data)
 	render_interface(data);
 }
 
-void	render_display(t_dataset *data)
+void			render_display(t_dataset *data)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Fractol");

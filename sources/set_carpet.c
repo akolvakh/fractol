@@ -1,6 +1,9 @@
+//norm done
+//review formulas
+
 #include "fractol.h"
 
-int				isfilled(int x, int y, t_dataset *data)
+int		isfilled(int x, int y, t_dataset *data)
 {
 	while (x > 0 || y > 0)
 	{
@@ -14,7 +17,7 @@ int				isfilled(int x, int y, t_dataset *data)
 	return (1);
 }
 
-void			calculation_carpet(t_dataset *data)
+void	calculation_carpet(t_dataset *data)
 {
 	int		x;
 	int		y;

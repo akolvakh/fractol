@@ -1,3 +1,5 @@
+//norm done
+
 #include "fractol.h"
 
 void	init_julia(t_dataset *data)

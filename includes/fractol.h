@@ -1,3 +1,7 @@
+//norm
+//review DS
+//review functions (name of the functions)
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 

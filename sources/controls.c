@@ -1,3 +1,5 @@
+//norm done
+
 #include "fractol.h"
 
 int		controls_arrows(int key, t_dataset *data)
@@ -77,4 +79,3 @@ int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 	}
 	return (0);
 }
-

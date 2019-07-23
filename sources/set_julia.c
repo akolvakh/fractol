@@ -1,3 +1,6 @@
+//norm done
+//review formulas
+
 #include "fractol.h"
 
 static void		juliamagic(t_dataset *data)

@@ -1,3 +1,6 @@
+//norme done
+//review formulas
+
 #include "fractol.h"
 
 static void		tricornmagic(t_dataset *data)
