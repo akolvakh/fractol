@@ -32,10 +32,9 @@ void			calculation_tricorn(t_dataset *data)
 					break ;
 			}
 			if (data->i < data->iteration)
-				render_image(data, data->x, data->y, (render_color(data, (data->color *
-					data->i), data->x, data->y)));
+				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
 			else
-				render_image(data, data->x, data->y, 200);
+				render_image(200, data->x, data->y, data);
 		}
 	}
 }

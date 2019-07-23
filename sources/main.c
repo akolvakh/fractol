@@ -15,8 +15,7 @@ int	main(int argc, char **argv)
 	data->color = 1;
 	if (argc == 2)
 	{
-		ft_putstr(argv[1]);
-		sys_validator(argv[1], data);
+		sys_validator(data, argv[1]);
 		init_main(data);
 		render_display(data);
 	}

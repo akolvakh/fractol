@@ -4,7 +4,7 @@
 
 #include "fractol.h"
 
-void	zoomin(int x, int y, t_dataset *data)
+void	zoomin(t_dataset *data, int x, int y)
 {
 	x -= WIDTH / 2;
 	y -= HEIGHT / 2;
@@ -15,7 +15,7 @@ void	zoomin(int x, int y, t_dataset *data)
 	data->movey -= data->y2;
 }
 
-void	zoomout(int x, int y, t_dataset *data)
+void	zoomout(t_dataset *data, int x, int y)
 {
 	x -= WIDTH / 2;
 	y -= HEIGHT / 2;
@@ -26,7 +26,7 @@ void	zoomout(int x, int y, t_dataset *data)
 	data->movey -= data->y2;
 }
 
-int		motion(int x, int y, t_dataset *data)
+int		motion(t_dataset *data, int x, int y)
 {
 	if (x > 0 && y > 0 && x < WIDTH && y < HEIGHT)
 	{

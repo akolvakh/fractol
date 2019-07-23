@@ -157,7 +157,7 @@ int					controls_arrows(int key, t_dataset *data);
 int					controls_numbers(int key, t_dataset *data);
 int					controls_keys(int key, t_dataset *data);
 
-int					isfilled(int x, int	y, t_dataset *data);
+int					isfilled(t_dataset *data, int x, int y);
 void				mandelassign(t_dataset *data);
 
 void				calculation_carpet(t_dataset *data);
@@ -168,20 +168,20 @@ void				calculation_ship(t_dataset *data);
 void				calculation_juliacubed(t_dataset *data);
 void				calculation_mandelcubed(t_dataset *data);
 
-void				zoomin(int x, int y, t_dataset *data);
-void				zoomout(int x, int y, t_dataset *data);
-int					motion(int x, int y, t_dataset *data);
+void				zoomin(t_dataset *data, int x, int y);//
+void				zoomout(t_dataset *data, int x, int y);//
+int					motion(t_dataset *data, int x, int y);//
 
-void				sys_validator(char *str, t_dataset *data);
-int					sys_close(t_dataset *data);
+void				sys_validator(t_dataset *data, char *input);
 void				sys_error(int error);
 void				sys_message(int message);
 void				sys_option(t_dataset *data);
+int					sys_close(t_dataset *data);
 
 void				render_display(t_dataset *data);
 void				render_interface(t_dataset *data);
 void				render_scene(t_dataset *data);
-void				render_image(t_dataset *data, int x, int y, int color);
-unsigned int		render_color(t_dataset *data,int i, double x, double y);
+void				render_image(int color, int x, int y, t_dataset *data);
+unsigned int		render_color(double x, double y, int i, t_dataset *data);
 
 #endif

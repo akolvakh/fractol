@@ -4,7 +4,7 @@
 
 #include "fractol.h"
 
-void			render_image(t_dataset *data, int x, int y, int color)
+void			render_image(int color, int x, int y, t_dataset *data)
 {
 	int	i;
 
@@ -14,7 +14,7 @@ void			render_image(t_dataset *data, int x, int y, int color)
 	data->img_ptr[++i] = color >> 16;
 }
 
-unsigned int	render_color(t_dataset *data,int i, double x, double y)
+unsigned int	render_color(double x, double y, int i, t_dataset *data)
 {
 	unsigned int	color;
 	double			magic;

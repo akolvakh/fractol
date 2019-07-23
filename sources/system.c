@@ -11,30 +11,6 @@ int		sys_close(t_dataset *data)
 	return (0);
 }
 
-void	sys_validator(char *str, t_dataset *data)
-{
-	if ((!(ft_strcmp(str, "mandel") == 0)) && (!(ft_strcmp(str, "julia") == 0))
-			&& (!(ft_strcmp(str, "ship") == 0)) && (!(ft_strcmp(str, "carpet")
-					== 0)) && (!(ft_strcmp(str, "tricorn") == 0))
-			&& (!(ft_strcmp(str, "juliacubed") == 0)) &&
-			(!(ft_strcmp(str, "mandelcubed") == 0)))
-		sys_error(USAGE);
-	if (ft_strcmp(str, "julia") == 0)
-		data->fractol = JULIA;
-	if (ft_strcmp(str, "mandel") == 0)
-		data->fractol = MANDEL;
-	if (ft_strcmp(str, "ship") == 0)
-		data->fractol = SHIP;
-	if (ft_strcmp(str, "carpet") == 0)
-		data->fractol = CARPET;
-	if (ft_strcmp(str, "tricorn") == 0)
-		data->fractol = TRICORN;
-	if (ft_strcmp(str, "juliacubed") == 0)
-		data->fractol = JULIACUBED;
-	if (ft_strcmp(str, "mandelcubed") == 0)
-		data->fractol = MANDELCUBED;
-}
-
 void	sys_error(int error)
 {
 	char *msg;
@@ -91,4 +67,29 @@ void	sys_option(t_dataset *data)
 		calculation_mandel(data);
 	if (data->fractol == JULIA)
 		calculation_julia(data);
+}
+
+void	sys_validator(t_dataset *data, char *input)
+{
+	if ((!(ft_strcmp(input, "tricorn") == 0)) && (!(ft_strcmp(input, "carpet") == 0))
+			&& (!(ft_strcmp(input, "juliacubed") == 0)) && (!(ft_strcmp(input, "julia")
+					== 0)) && (!(ft_strcmp(input, "mandel") == 0))
+			&& (!(ft_strcmp(input, "ship") == 0)) &&
+			(!(ft_strcmp(input, "mandelcubed") == 0)))
+		sys_error(USAGE);
+	ft_putendl(input);
+	if (ft_strcmp(input, "julia") == 0)
+		data->fractol = JULIA;
+	if (ft_strcmp(input, "mandel") == 0)
+		data->fractol = MANDEL;
+	if (ft_strcmp(input, "ship") == 0)
+		data->fractol = SHIP;
+	if (ft_strcmp(input, "carpet") == 0)//
+		data->fractol = CARPET;
+	if (ft_strcmp(input, "tricorn") == 0)
+		data->fractol = TRICORN;
+	if (ft_strcmp(input, "juliacubed") == 0)
+		data->fractol = JULIACUBED;
+	if (ft_strcmp(input, "mandelcubed") == 0)
+		data->fractol = MANDELCUBED;
 }
