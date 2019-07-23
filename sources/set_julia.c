@@ -1,5 +1,14 @@
-//norm done
-//review formulas
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_julia.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:28:04 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:28:05 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -34,7 +43,8 @@ void			calculation_juliacubed(t_dataset *data)
 					break ;
 			}
 			if (data->i < data->iteration)
-				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
+				render_image(render_color(data->x, data->y,
+						(data->i * data->color), data), data->x, data->y, data);
 			else
 				render_image(0x000000, data->x, data->y, data);
 		}
@@ -45,7 +55,8 @@ static void		mandatory_julia(t_dataset *data)
 {
 	data->oldre = data->newre;
 	data->oldim = data->newim;
-	data->newre = data->oldre * data->oldre - data->oldim * data->oldim + data->cre;
+	data->newre = data->oldre * data->oldre -
+			data->oldim * data->oldim + data->cre;
 	data->newim = 2 * data->oldre * data->oldim + data->cim;
 }
 
@@ -69,7 +80,8 @@ void			calculation_julia(t_dataset *data)
 					break ;
 			}
 			if (data->i < data->iteration)
-				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
+				render_image(render_color(data->x, data->y,
+						(data->i * data->color), data), data->x, data->y, data);
 			else
 				render_image(0x000000, data->x, data->y, data);
 		}

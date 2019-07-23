@@ -1,6 +1,14 @@
-//review this file
-//norm done
-//review sys_validator & sys_option
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   system.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:29:13 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:29:15 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -23,8 +31,8 @@ void	sys_error(int error)
 	|| (error == MALLOC && (msg = "ERROR: can't malloc memory\n"))
 	|| (error == INPUT && (msg = "ERROR: too much input\n"))
 	|| (error == FINISH && (msg = "MESSAGE: Exit the program\n"))
-	|| (error == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n" 
-				"3. ship\n4. carpet\n5. tricorn\n6. juliacubed \n7. mandelcubed\n"
+	|| (error == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
+				"4. carpet\n5. tricorn\n6. juliacubed \n7. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
@@ -37,8 +45,8 @@ void	sys_message(int message)
 {
 	char *msg;
 
-	if ((message == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n" 
-				"3. ship\n4. carpet\n5. tricorn\n6. juliacubed \n7. mandelcubed\n"
+	if ((message == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
+				"4. carpet\n5. tricorn\n6. juliacubed \n7. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
@@ -71,11 +79,13 @@ void	sys_option(t_dataset *data)
 
 void	sys_validator(t_dataset *data, char *input)
 {
-	if ((!(ft_strcmp(input, "tricorn") == 0)) && (!(ft_strcmp(input, "carpet") == 0))
-			&& (!(ft_strcmp(input, "juliacubed") == 0)) && (!(ft_strcmp(input, "julia")
-					== 0)) && (!(ft_strcmp(input, "mandel") == 0))
-			&& (!(ft_strcmp(input, "ship") == 0)) &&
-			(!(ft_strcmp(input, "mandelcubed") == 0)))
+	if ((!(ft_strcmp(input, "tricorn") == 0))
+		&& (!(ft_strcmp(input, "carpet") == 0))
+		&& (!(ft_strcmp(input, "ship") == 0))
+		&& (!(ft_strcmp(input, "julia") == 0))
+		&& (!(ft_strcmp(input, "mandel") == 0))
+		&& (!(ft_strcmp(input, "juliacubed") == 0))
+		&& (!(ft_strcmp(input, "mandelcubed") == 0)))
 		sys_error(USAGE);
 	ft_putendl(input);
 	if (ft_strcmp(input, "julia") == 0)
@@ -84,7 +94,7 @@ void	sys_validator(t_dataset *data, char *input)
 		data->fractol = MANDEL;
 	if (ft_strcmp(input, "ship") == 0)
 		data->fractol = SHIP;
-	if (ft_strcmp(input, "carpet") == 0)//
+	if (ft_strcmp(input, "carpet") == 0)
 		data->fractol = CARPET;
 	if (ft_strcmp(input, "tricorn") == 0)
 		data->fractol = TRICORN;

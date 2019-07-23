@@ -1,5 +1,14 @@
-//norm done
-//review formulas
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_ship.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:28:42 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:28:43 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -41,7 +50,8 @@ void			calculation_ship(t_dataset *data)
 					break ;
 			}
 			if (data->i < data->iteration)
-				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
+				render_image(render_color(data->x, data->y,
+						(data->i * data->color), data), data->x, data->y, data);
 			else
 				render_image(200, data->x, data->y, data);
 		}

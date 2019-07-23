@@ -1,5 +1,14 @@
-//norme done
-//review formulas
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_tricorn.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:28:48 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:28:50 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -7,7 +16,8 @@ static void		tricornmagic(t_dataset *data)
 {
 	data->oldre = data->newre;
 	data->oldim = data->newim * -1;
-	data->newre = data->oldre * data->oldre - data->oldim * data->oldim + data->pr;
+	data->newre = data->oldre * data->oldre -
+			data->oldim * data->oldim + data->pr;
 	data->newim = 2 * data->oldre * data->oldim + data->pi;
 }
 
@@ -32,7 +42,8 @@ void			calculation_tricorn(t_dataset *data)
 					break ;
 			}
 			if (data->i < data->iteration)
-				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
+				render_image(render_color(data->x, data->y,
+						(data->i * data->color), data), data->x, data->y, data);
 			else
 				render_image(200, data->x, data->y, data);
 		}

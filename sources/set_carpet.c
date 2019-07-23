@@ -1,15 +1,24 @@
-//norm done
-//review formulas
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_carpet.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:27:55 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:27:56 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
-int		isfilled(t_dataset *data, int x, int y)//
+int		isfilled(t_dataset *data, int x, int y)
 {
 	while (x > 0 || y > 0)
 	{
 		if (data->iteration < 5)
 			data->iteration = 5;
-		if (x % (int)data->iteration == 1 && y % (int)data->iteration == 1)//
+		if (x % (int)data->iteration == 1 && y % (int)data->iteration == 1)
 			return (0);
 		x /= 3;
 		y /= 3;

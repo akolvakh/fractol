@@ -1,6 +1,14 @@
-//review this file
-//change name of functions
-//norm done
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manipulation.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:26:09 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:26:11 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -38,7 +46,7 @@ int		motion(t_dataset *data, int x, int y)
 				(((double)HEIGHT * 2) + data->y);
 			data->cim = ((data->clicky + data->y) - HEIGHT) /
 				((double)HEIGHT * 2);
-			render_scene(data);	
+			render_scene(data);
 		}
 	}
 	return (0);

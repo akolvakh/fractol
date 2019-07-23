@@ -1,6 +1,14 @@
-//norm
-//review DS
-//review functions (name of the functions)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/23 21:25:09 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/23 21:25:12 by akolvakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
@@ -71,7 +79,7 @@ enum				e_colors
 
 enum				e_display
 {
-	START_X = 100, 
+	START_X = 100,
 	START_Y = 100,
 	WIDTH = 1400,
 	HEIGHT = 800
@@ -168,9 +176,9 @@ void				calculation_ship(t_dataset *data);
 void				calculation_juliacubed(t_dataset *data);
 void				calculation_mandelcubed(t_dataset *data);
 
-void				zoomin(t_dataset *data, int x, int y);//
-void				zoomout(t_dataset *data, int x, int y);//
-int					motion(t_dataset *data, int x, int y);//
+void				zoomin(t_dataset *data, int x, int y);
+void				zoomout(t_dataset *data, int x, int y);
+int					motion(t_dataset *data, int x, int y);
 
 void				sys_validator(t_dataset *data, char *input);
 void				sys_error(int error);
