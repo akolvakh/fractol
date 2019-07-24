@@ -12,24 +12,16 @@
 
 #include "fractol.h"
 
-void	scale_up(int x, int y, t_dataset *data)
+void	scale(int a, int x, int y, t_dataset *data) //объеденить в одну функцию
 {
-	x -= WDT / 2;
-	y -= HGT / 2;
+	x = x - WDT / 2;
+	y = y - HGT / 2;
 	data->x2 = ((data->x - x) - WDT) / ((double)HGT * 2);
 	data->y2 = ((data->y - y) - HGT) / (((double)WDT * 2) + y);
-	data->zoom *= pow(1.001, 70);
-	data->movex -= data->x2;
-	data->movey -= data->y2;
-}
-
-void	scale_down(int x, int y, t_dataset *data)
-{
-	x -= WDT / 2;
-	y -= HGT / 2;
-	data->x2 = ((data->x - x) - WDT) / ((double)HGT * 2);
-	data->y2 = ((data->y - y) - HGT) / (((double)WDT * 2) + y);
-	data->zoom /= pow(1.001, 70);
+	if (a == 1)
+		data->zoom /= pow(1.001, 70);
+	else
+		data->zoom *= pow(1.001, 70);
 	data->movex -= data->x2;
 	data->movey -= data->y2;
 }
@@ -42,10 +34,8 @@ int		motion(int x, int y, t_dataset *data)
 		{
 			data->clickx = x;
 			data->clicky = y;
-			data->defre = ((data->clickx - data->x) -
-				WDT) / (((double)HGT * 2) + data->y);
-			data->defim = ((data->clicky + data->y) -
-				HGT) / ((double)HGT * 2);
+			data->defre = ((data->clickx - data->x) - WDT) / (((double)HGT * 2) + data->y);
+			data->defim = ((data->clicky + data->y) - HGT) / ((double)HGT * 2);
 			render_scene(data);
 		}
 	}

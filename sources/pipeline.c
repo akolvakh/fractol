@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void			render_image(int color, int x, int y, t_dataset *data)
+void			render_image(int color, int x, int y, t_dataset *data)//render color
 {
 	int	i;
 
@@ -22,7 +22,7 @@ void			render_image(int color, int x, int y, t_dataset *data)
 	data->img_ptr[++i] = color >> 16;
 }
 
-unsigned int	render_color(double x, double y, int i, t_dataset *data)
+unsigned int	render_color(double x, double y, int i, t_dataset *data)//
 {
 	unsigned int	color;
 	double			magic;
@@ -56,7 +56,7 @@ void			render_scene(t_dataset *data)
 	data->img_ptr = mlx_get_data_addr(data->img, &(data->bpp),
 		&(data->s1), &(data->endian));
 	sys_option(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 230, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 100, 0);
 	render_interface(data);
 }
 

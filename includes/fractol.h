@@ -37,6 +37,9 @@ enum				e_keys
 	THREE = 20,
 	FOUR = 21,
 	FIVE = 23,
+	SIX = 22,
+	SEVEN = 26,
+	EIGTH = 28,
 	PLUS = 24,
 	MINUS = 27,
 	P = 35,
@@ -171,8 +174,7 @@ void				algo_mandel(t_dataset *data);
 void				algo_ship(t_dataset *data);
 void				algo_juliacubed(t_dataset *data);
 void				algo_mandelcubed(t_dataset *data);
-void				scale_up(int x, int y, t_dataset *data);
-void				scale_down(int x, int y, t_dataset *data);
+void				scale(int a, int x, int y, t_dataset *data);
 int					motion(int x, int y, t_dataset *data);
 void				sys_validator(t_dataset *data, char *input);
 void				sys_error(int error);

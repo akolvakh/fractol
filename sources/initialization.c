@@ -18,7 +18,7 @@ void	init_julia(t_dataset *data)
 	data->movey = 0;
 	data->defre = -0.7;
 	data->defim = 0.27015;
-	data->iteration = 15;
+	data->iteration = 50;
 	data->zoom = 0.5;
 }
 

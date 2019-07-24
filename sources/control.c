@@ -45,14 +45,24 @@ int		controls_buttons(int key, t_dataset *data)
 int		controls_numbers(int key, t_dataset *data)
 {
 	if (key == ONE)
-		data->color = 1;
+		data->fractol = JULIA;
 	else if (key == TWO)
-		data->color = GREEN;
+		data->fractol = MANDEL;
 	else if (key == THREE)
-		data->color = 1000;
-	else if (key == FOUR)
-		data->color += 35;
+		data->fractol = SHIP;
+	else if (key == FOUR) // change menu
+		data->fractol = TRICORN;
 	else if (key == FIVE)
+		data->fractol = MANDELCUBED;
+	else if (key == SIX)
+		data->color = 1;
+	else if (key == SEVEN)
+		data->color = GREEN;
+	else if (key == EIGTH)
+		data->color = 1000;
+	else if (key == TAB)
+		data->color += 35;
+	else if (key == SHIFT)
 		data->color -= 15;
 	return (0);
 }
@@ -73,9 +83,9 @@ int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 	if (x < WDT && y < HGT && x > 0 && y > 0)
 	{
 		if (mousekey == SCROLL_DOWN)
-			scale_up(x, y, data);
+			scale(1, x, y, data);
 		else if (mousekey == SCROLL_UP)
-			scale_down(x, y, data);
+			scale(0, x, y, data);
 		else if (mousekey == LEFT_CLICK)
 			data->iteration += 3;
 		else if (mousekey == RIGHT_CLICK)
