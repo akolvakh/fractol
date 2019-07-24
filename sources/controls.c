@@ -70,22 +70,27 @@ int		controls_keys(int key, t_dataset *data)
 
 int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 {
-	if (x > 0 && y > 0 && x < WIDTH && y < HEIGHT)
+	if (x < WIDTH && y < HEIGHT && x > 0 && y > 0)
 	{
 		if (mousekey == SCROLL_DOWN)
-			zoomin(data, x, y);
+			zoomin(x, y, data);
 		else if (mousekey == SCROLL_UP)
-			zoomout(data, x, y);
+			zoomout(x, y, data);
 		else if (mousekey == LEFT_CLICK)
 			data->iteration += 5;
 		else if (mousekey == RIGHT_CLICK)
 		{
+			ft_putendl("HERE1");//
 			if (data->movemouse == 1)
 				data->movemouse = 0;
 			else
 				data->movemouse = 1;
 		}
 		render_scene(data);
+			ft_putendl("HERE4");//
+			ft_putnbr(x);
+			ft_putchar('\n');
+			ft_putnbr(y);
 	}
 	return (0);
 }

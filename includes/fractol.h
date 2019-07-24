@@ -31,6 +31,7 @@ enum				e_keys
 	W = 13,
 	E = 14,
 	R = 15,
+	CROSS = 17,
 	ONE = 18,
 	TWO = 19,
 	THREE = 20,
@@ -50,7 +51,8 @@ enum				e_keys
 	UP_ARROW = 126,
 	DOWN_ARROW = 125,
 	RIGHT_ARROW = 124,
-	LEFT_ARROW = 123
+	LEFT_ARROW = 123,
+	MOTION = 6
 };
 
 enum				e_fractols
@@ -176,9 +178,9 @@ void				calculation_ship(t_dataset *data);
 void				calculation_juliacubed(t_dataset *data);
 void				calculation_mandelcubed(t_dataset *data);
 
-void				zoomin(t_dataset *data, int x, int y);
-void				zoomout(t_dataset *data, int x, int y);
-int					motion(t_dataset *data, int x, int y);
+void				zoomin(int x, int y, t_dataset *data);
+void				zoomout(int x, int y, t_dataset *data);
+int					motion(int x, int y, t_dataset *data);
 
 void				sys_validator(t_dataset *data, char *input);
 void				sys_error(int error);

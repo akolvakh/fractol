@@ -49,17 +49,17 @@ void	init_carpet(t_dataset *data)
 void	init_main(t_dataset *data)
 {
 	if (data->fractol == 1)
-		init_mandel(data);
-	if (data->fractol == 2)
 		init_julia(data);
-	if (data->fractol == 3)
+	if (data->fractol == 2)
 		init_mandel(data);
+	if (data->fractol == 3)
+		init_ship(data);
 	if (data->fractol == 4)
 		init_carpet(data);
 	if (data->fractol == 5)
-		init_ship(data);
-	if (data->fractol == 6)
 		init_mandel(data);
-	if (data->fractol == 7)
+	if (data->fractol == 6)
 		init_julia(data);
+	if (data->fractol == 7)
+		init_mandel(data);
 }

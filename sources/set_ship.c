@@ -21,14 +21,6 @@ static void		shipmagic(t_dataset *data)
 	data->newim = fabs(2 * data->oldre * data->oldim) + data->pi;
 }
 
-static void		shipassign(t_dataset *data)
-{
-	data->oldim = 0;
-	data->oldre = data->oldim;
-	data->newim = data->oldre;
-	data->newre = data->newim;
-}
-
 void			calculation_ship(t_dataset *data)
 {
 	data->y = -1;
@@ -41,7 +33,7 @@ void			calculation_ship(t_dataset *data)
 				(0.5 * data->zoom * WIDTH) + data->movex;
 			data->pi = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
-			shipassign(data);
+			mandelassign(data);
 			data->i = -1;
 			while (++data->i < data->iteration)
 			{

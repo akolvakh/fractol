@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-static void		bonus_juliacubed(t_dataset *data)
+static void		bonus_juliacubed(t_dataset *data)//formula
 {
 	data->oldre = data->newre;
 	data->oldim = data->newim;
@@ -23,7 +23,7 @@ static void		bonus_juliacubed(t_dataset *data)
 		(data->oldim * data->oldim * data->oldim) + data->cim;
 }
 
-void			calculation_juliacubed(t_dataset *data)
+void			calculation_juliacubed(t_dataset *data)//algo
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
@@ -40,7 +40,7 @@ void			calculation_juliacubed(t_dataset *data)
 			{
 				bonus_juliacubed(data);
 				if ((data->newre * data->newre + data->newim) > 4)
-					break ;
+					break ;//
 			}
 			if (data->i < data->iteration)
 				render_image(render_color(data->x, data->y,
@@ -51,7 +51,7 @@ void			calculation_juliacubed(t_dataset *data)
 	}
 }
 
-static void		mandatory_julia(t_dataset *data)
+static void		mandatory_julia(t_dataset *data)//formula
 {
 	data->oldre = data->newre;
 	data->oldim = data->newim;
@@ -60,7 +60,7 @@ static void		mandatory_julia(t_dataset *data)
 	data->newim = 2 * data->oldre * data->oldim + data->cim;
 }
 
-void			calculation_julia(t_dataset *data)
+void			calculation_julia(t_dataset *data)//algo
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
