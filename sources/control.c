@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls.c                                         :+:      :+:    :+:   */
+/*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 21:25:49 by akolvakh          #+#    #+#             */
-/*   Updated: 2019/07/23 21:25:51 by akolvakh         ###   ########.fr       */
+/*   Created: 2019/07/24 13:17:16 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/24 13:17:17 by akolvakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		controls_keys(int key, t_dataset *data)
 
 int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 {
-	if (x < WIDTH && y < HEIGHT && x > 0 && y > 0)
+	if (x < WDT && y < HGT && x > 0 && y > 0)
 	{
 		if (mousekey == SCROLL_DOWN)
 			scale_up(x, y, data);

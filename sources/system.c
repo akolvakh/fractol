@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 21:29:13 by akolvakh          #+#    #+#             */
-/*   Updated: 2019/07/23 21:29:15 by akolvakh         ###   ########.fr       */
+/*   Created: 2019/07/24 13:17:50 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/24 13:17:51 by akolvakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	sys_option(t_dataset *data)
 		algo_julia(data);
 }
 
-void	sys_validator(t_dataset *data, char *input)///
+void	sys_validator(t_dataset *data, char *input)
 {
 	if ((!(ft_strcmp(input, "tricorn") == 0))
 		&& (!(ft_strcmp(input, "ship") == 0))

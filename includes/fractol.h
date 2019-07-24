@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 21:25:09 by akolvakh          #+#    #+#             */
-/*   Updated: 2019/07/23 21:25:12 by akolvakh         ###   ########.fr       */
+/*   Created: 2019/07/24 13:16:59 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/24 13:17:01 by akolvakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ enum				e_colors
 
 enum				e_display
 {
-	WIDTH = 1400,
-	HEIGHT = 800
+	WDT = 1400,
+	HGT = 800
 };
 
 enum				e_errors
@@ -114,49 +114,38 @@ typedef struct		s_dataset
 	int				menu_sl;
 	int				menu_end;
 	int				menu_bpp;
-
 	void			*mlx;
 	void			*win;
 	void			*img;
 	char			*img_ptr;
-
 	int				bpp;
 	int				s1;
 	int				endian;
 	int				color;
 	int				fractol;
-
 	double			**map;
 	double			x;
 	double			y;
 	double			zoom;
 	double			movex;
 	double			movey;
-
-
 	double			clickx;
 	double			clicky;
 	double			tmpx;
 	double			tmpy;
-
-
 	double			defre;
 	double			defim;
 	double			oldre;
 	double			oldim;
 	double			newre;
 	double			newim;
-
 	int				iteration;
 	int				i;
 	double			pr;
 	double			pi;
-
-
 	int				movemouse;
 	double			x2;
 	double			y2;
-
 	unsigned char	a[3];
 }					t_dataset;
 

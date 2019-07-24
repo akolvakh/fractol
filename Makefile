@@ -32,7 +32,7 @@ H = $(addprefix $(H_DIR), $(H_LIST))
 
 SRC_DIR = ./sources/
 SRC_LIST = main.c\
-algo.c\
+algorithm.c\
 formula.c\
 control.c\
 initialization.c\

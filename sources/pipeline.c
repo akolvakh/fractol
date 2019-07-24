@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akolvakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 21:26:15 by akolvakh          #+#    #+#             */
-/*   Updated: 2019/07/23 21:26:16 by akolvakh         ###   ########.fr       */
+/*   Created: 2019/07/24 13:17:44 by akolvakh          #+#    #+#             */
+/*   Updated: 2019/07/24 13:17:45 by akolvakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"///
+#include "fractol.h"
 
-void			render_image(int color, int x, int y, t_dataset *data)//
+void			render_image(int color, int x, int y, t_dataset *data)
 {
 	int	i;
 
@@ -24,13 +24,13 @@ void			render_image(int color, int x, int y, t_dataset *data)//
 
 unsigned int	render_color(double x, double y, int i, t_dataset *data)
 {
-	unsigned int	color;//
-	double			magic;//
-	double			i2;//
+	unsigned int	color;
+	double			magic;
+	double			i2;
 
 	magic = sqrt(x * x + y * y);
 	i2 = i + 1 - (log(2) / magic) / log(2);
-	data->a[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);//
+	data->a[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);
 	data->a[1] = (unsigned char)(sin(0.023 * i2 + 2) * 230 + 25);
 	data->a[2] = (unsigned char)(sin(0.01 * i2 + 1) * 230 + 25);
 	color = (data->a[0] << 16) + (data->a[1] << 8) + (data->a[2] + 255);
@@ -52,8 +52,9 @@ void			render_interface(t_dataset *data)
 void			render_scene(t_dataset *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->img_ptr = mlx_get_data_addr(data->img, &(data->bpp), &(data->s1), &(data->endian));
+	data->img = mlx_new_image(data->mlx, WDT, HGT);
+	data->img_ptr = mlx_get_data_addr(data->img, &(data->bpp),
+		&(data->s1), &(data->endian));
 	sys_option(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 230, 0);
 	render_interface(data);
@@ -62,8 +63,8 @@ void			render_scene(t_dataset *data)
 void			render_display(t_dataset *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Fractol");
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->win = mlx_new_window(data->mlx, WDT, HGT, "Fractol");
+	data->img = mlx_new_image(data->mlx, WDT, HGT);
 	render_scene(data);
 	mlx_key_hook(data->win, controls_keys, data);
 	mlx_mouse_hook(data->win, controls_mouse, data);
