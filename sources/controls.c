@@ -80,17 +80,12 @@ int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 			data->iteration += 5;
 		else if (mousekey == RIGHT_CLICK)
 		{
-			ft_putendl("HERE1");//
 			if (data->movemouse == 1)
 				data->movemouse = 0;
 			else
 				data->movemouse = 1;
 		}
 		render_scene(data);
-			ft_putendl("HERE4");//
-			ft_putnbr(x);
-			ft_putchar('\n');
-			ft_putnbr(y);
 	}
 	return (0);
 }

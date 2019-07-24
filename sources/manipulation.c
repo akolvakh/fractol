@@ -36,29 +36,20 @@ void	zoomout(int x, int y, t_dataset *data)
 
 int		motion(int x, int y, t_dataset *data)
 {
-	
-	ft_putendl("HERE4");//
-	ft_putnbr(x);
-	ft_putchar('\n');
-	ft_putnbr(y);
-
-
 	if (x > 0 && y > 0 && x < WIDTH && y < HEIGHT)
 	{
-		ft_putendl("HERE5");//
-
 		if ((data->fractol == 1 || data->fractol == 6) && data->movemouse == 1)
 		{
-			ft_putendl("HERE2");//
-
 			data->clickx = x;
 			data->clicky = y;
 			data->cre = ((data->clickx - data->x) - WIDTH) / (((double)HEIGHT * 2) + data->y);
 			data->cim = ((data->clicky + data->y) - HEIGHT) / ((double)HEIGHT * 2);
 			render_scene(data);
-			ft_putendl("HERE3");//
-
 		}
+		ft_putendl("HERE4");//
+		ft_putnbr(x);
+		ft_putchar('\n');
+		ft_putnbr(y);
 	}
 	return (0);
 }

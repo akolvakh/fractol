@@ -68,7 +68,7 @@ void			render_display(t_dataset *data)
 	render_scene(data);
 	mlx_key_hook(data->win, controls_keys, data);
 	mlx_mouse_hook(data->win, controls_mouse, data);
-	mlx_hook(data->win, 17, 0, sys_close, data);
-	mlx_hook(data->win, 6, 0, motion, data);
+	mlx_hook(data->win, CROSS, 0, sys_close, data);
+	mlx_hook(data->win, MOTION, 0, motion, data);
 	mlx_loop(data->mlx);
 }

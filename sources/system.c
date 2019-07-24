@@ -32,7 +32,7 @@ void	sys_error(int error)
 	|| (error == INPUT && (msg = "ERROR: too much input\n"))
 	|| (error == FINISH && (msg = "MESSAGE: Exit the program\n"))
 	|| (error == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
-				"4. carpet\n5. tricorn\n6. juliacubed \n7. mandelcubed\n"
+				"4. tricorn\n5. juliacubed \n6. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
@@ -46,7 +46,7 @@ void	sys_message(int message)
 	char *msg;
 
 	if ((message == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
-				"4. carpet\n5. tricorn\n6. juliacubed \n7. mandelcubed\n"
+				"4. tricorn\n5. juliacubed \n6. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
@@ -62,25 +62,22 @@ void	sys_message(int message)
 void	sys_option(t_dataset *data)
 {
 	if (data->fractol == MANDELCUBED)
-		calculation_mandelcubed(data);
+		algo_mandelcubed(data);
 	if (data->fractol == JULIACUBED)
-		calculation_juliacubed(data);
+		algo_juliacubed(data);
 	if (data->fractol == TRICORN)
-		calculation_tricorn(data);
-	if (data->fractol == CARPET)
-		calculation_carpet(data);
+		algo_tricorn(data);
 	if (data->fractol == SHIP)
-		calculation_ship(data);
+		algo_ship(data);
 	if (data->fractol == MANDEL)
-		calculation_mandel(data);
+		algo_mandel(data);
 	if (data->fractol == JULIA)
-		calculation_julia(data);
+		algo_julia(data);
 }
 
 void	sys_validator(t_dataset *data, char *input)
 {
 	if ((!(ft_strcmp(input, "tricorn") == 0))
-		&& (!(ft_strcmp(input, "carpet") == 0))
 		&& (!(ft_strcmp(input, "ship") == 0))
 		&& (!(ft_strcmp(input, "julia") == 0))
 		&& (!(ft_strcmp(input, "mandel") == 0))
@@ -94,8 +91,6 @@ void	sys_validator(t_dataset *data, char *input)
 		data->fractol = MANDEL;
 	if (ft_strcmp(input, "ship") == 0)
 		data->fractol = SHIP;
-	if (ft_strcmp(input, "carpet") == 0)
-		data->fractol = CARPET;
 	if (ft_strcmp(input, "tricorn") == 0)
 		data->fractol = TRICORN;
 	if (ft_strcmp(input, "juliacubed") == 0)

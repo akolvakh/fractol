@@ -60,10 +60,9 @@ enum				e_fractols
 	JULIA = 1,
 	MANDEL = 2,
 	SHIP = 3,
-	CARPET = 4,
-	TRICORN = 5,
-	JULIACUBED = 6,
-	MANDELCUBED = 7,
+	TRICORN = 4,
+	JULIACUBED = 5,
+	MANDELCUBED = 6,
 };
 
 enum				e_colors
@@ -158,7 +157,6 @@ typedef struct		s_dataset
 void				init_julia(t_dataset *data);
 void				init_mandel(t_dataset *data);
 void				init_ship(t_dataset *data);
-void				init_carpet(t_dataset *data);
 void				init_main(t_dataset *data);
 
 int					controls_mouse(int mousekey, int x, int y, t_dataset *data);
@@ -168,15 +166,21 @@ int					controls_numbers(int key, t_dataset *data);
 int					controls_keys(int key, t_dataset *data);
 
 int					isfilled(t_dataset *data, int x, int y);
-void				mandelassign(t_dataset *data);
+void				formula_mandelassign(t_dataset *data);
+void				formula_tricorn(t_dataset *data);
+void				formula_ship(t_dataset *data);
+void				formula_mandelcubed(t_dataset *data);
+void				formula_mandel(t_dataset *data);
+void				formula_juliacubed(t_dataset *data);
+void				formula_julia(t_dataset *data);
 
-void				calculation_carpet(t_dataset *data);
-void				calculation_tricorn(t_dataset *data);
-void				calculation_julia(t_dataset *data);
-void				calculation_mandel(t_dataset *data);
-void				calculation_ship(t_dataset *data);
-void				calculation_juliacubed(t_dataset *data);
-void				calculation_mandelcubed(t_dataset *data);
+
+void				algo_tricorn(t_dataset *data);
+void				algo_julia(t_dataset *data);
+void				algo_mandel(t_dataset *data);
+void				algo_ship(t_dataset *data);
+void				algo_juliacubed(t_dataset *data);
+void				algo_mandelcubed(t_dataset *data);
 
 void				zoomin(int x, int y, t_dataset *data);
 void				zoomout(int x, int y, t_dataset *data);

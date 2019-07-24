@@ -38,28 +38,18 @@ void	init_ship(t_dataset *data)
 	data->zoom = 0.5;
 }
 
-void	init_carpet(t_dataset *data)
-{
-	data->movex = 0;
-	data->movey = 0;
-	data->iteration = 3;
-	data->zoom = 0.5;
-}
-
 void	init_main(t_dataset *data)
 {
-	if (data->fractol == 1)
+	if (data->fractol == JULIA)
 		init_julia(data);
-	if (data->fractol == 2)
+	if (data->fractol == MANDEL)
 		init_mandel(data);
-	if (data->fractol == 3)
+	if (data->fractol == SHIP)
 		init_ship(data);
-	if (data->fractol == 4)
-		init_carpet(data);
-	if (data->fractol == 5)
+	if (data->fractol == TRICORN)
 		init_mandel(data);
-	if (data->fractol == 6)
+	if (data->fractol == JULIACUBED)
 		init_julia(data);
-	if (data->fractol == 7)
+	if (data->fractol == MANDELCUBED)
 		init_mandel(data);
 }
