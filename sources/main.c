@@ -14,19 +14,19 @@
 
 int	main(int argc, char **argv)
 {
-	t_dataset *data;
+	t_dataset *ai;
 
 	if (argc < 2)
 		sys_message(USAGE);
 	if (argc > 2)
 		sys_error(INPUT);
-	if (!(data = (t_dataset *)ft_memalloc(sizeof(t_dataset))))
+	if (!(ai = (t_dataset *)ft_memalloc(sizeof(t_dataset))))
 		sys_error(MALLOC);
-	data->color = 1;
+	ai->color = 1;
 	if (argc == 2)
 	{
-		sys_validator(data, argv[1]);
-		init_main(data);
-		render_display(data);
+		sys_validator(ai, argv[1]);
+		init_main(ai);
+		render_display(ai);
 	}
 }

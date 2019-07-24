@@ -12,50 +12,50 @@
 
 #include "fractol.h"
 
-void	init_julia(t_dataset *data)
+void	init_julia(t_dataset *ai)
 {
-	data->m_x = 0;
-	data->m_y = 0;
-	data->k = -0.7;
-	data->l = 0.27015;
-	data->itr = 30;
-	data->zoom = 0.5;
+	ai->m_x = 0;
+	ai->m_y = 0;
+	ai->k = -0.7;
+	ai->l = 0.27015;
+	ai->itr = 30;
+	ai->zoom = 0.5;
 }
 
-void	init_mandel(t_dataset *data)
+void	init_mandel(t_dataset *ai)
 {
-	data->m_x = 0;
-	data->m_y = 0;
-	data->itr = 15;
-	data->zoom = 0.5;
+	ai->m_x = 0;
+	ai->m_y = 0;
+	ai->itr = 15;
+	ai->zoom = 0.5;
 }
 
-void	init_ship(t_dataset *data)
+void	init_ship(t_dataset *ai)
 {
-	data->m_x = 0;
-	data->m_y = 0;
-	data->itr = 15;
-	data->zoom = 0.5;
+	ai->m_x = 0;
+	ai->m_y = 0;
+	ai->itr = 15;
+	ai->zoom = 0.5;
 }
 
-void	init_formula(t_dataset *data)
+void	init_formula(t_dataset *ai)
 {
-	data->old_l = 0;
-	data->oldr_k = data->old_l;
-	data->new_l = data->oldr_k;
-	data->new_k = data->new_l;
+	ai->old_l = 0;
+	ai->oldr_k = ai->old_l;
+	ai->new_l = ai->oldr_k;
+	ai->new_k = ai->new_l;
 }
 
-void	init_main(t_dataset *data)
+void	init_main(t_dataset *ai)
 {
-	if (data->fractol == JULIA)
-		init_julia(data);
-	if (data->fractol == MANDEL)
-		init_mandel(data);
-	if (data->fractol == SHIP)
-		init_ship(data);
-	if (data->fractol == TRICORN)
-		init_mandel(data);
-	if (data->fractol == MANDELCUBED)
-		init_mandel(data);
+	if (ai->fractol == JULIA)
+		init_julia(ai);
+	if (ai->fractol == MANDEL)
+		init_mandel(ai);
+	if (ai->fractol == SHIP)
+		init_ship(ai);
+	if (ai->fractol == TRICORN)
+		init_mandel(ai);
+	if (ai->fractol == MANDELCUBED)
+		init_mandel(ai);
 }

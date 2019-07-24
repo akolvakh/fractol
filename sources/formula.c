@@ -12,42 +12,67 @@
 
 #include "fractol.h"
 
-void		formula_julia(t_dataset *data)
+void	formula_fractol(int c, t_dataset *ai)
 {
-	data->oldr_k = data->new_k;
-	data->old_l = data->new_l;
-	data->new_k = data->oldr_k * data->oldr_k - data->old_l * data->old_l + data->k;
-	data->new_l = 2 * data->oldr_k * data->old_l + data->l;
+	ai->oldr_k = ai->new_k;
+	ai->old_l = ai->new_l;
+	if (c == JULIA)
+	{
+		ai->new_k = ai->oldr_k * ai->oldr_k - ai->old_l * ai->old_l + ai->k;
+		ai->new_l = 2 * ai->oldr_k * ai->old_l + ai->l;
+	}
+	else if (c == MANDEL)
+	{
+		ai->new_k = ai->oldr_k * ai->oldr_k - ai->old_l * ai->old_l + ai->p_k;
+		ai->new_l = 2 * ai->oldr_k * ai->old_l + ai->p_l;
+	}
+	else if (c == MANDELCUBED)
+	{
+		ai->new_k = (ai->oldr_k * ai->oldr_k * ai->oldr_k) -
+			(ai->old_l * ai->oldr_k * ai->old_l) -
+			(2 * ai->oldr_k * ai->old_l * ai->old_l) + ai->p_k;
+		ai->new_l = (2 * ai->oldr_k * ai->oldr_k * ai->old_l) -
+			(ai->old_l * ai->old_l * ai->old_l) + ai->p_l;
+	}
+	else if (c == SHIP)
+	{
+		ai->new_k = ai->oldr_k * ai->oldr_k - ai->old_l * ai->old_l + ai->p_k;
+		ai->new_l = fabs(2 * ai->oldr_k * ai->old_l) + ai->p_l;
+	}
 }
 
-void		formula_mandel(t_dataset *data)
+void	formula_tricorn(t_dataset *ai)
 {
-	data->oldr_k = data->new_k;
-	data->old_l = data->new_l;
-	data->new_k = data->oldr_k * data->oldr_k - data->old_l * data->old_l + data->p_k;
-	data->new_l = 2 * data->oldr_k * data->old_l + data->p_l;
+	ai->oldr_k = ai->new_k;
+	ai->old_l = ai->new_l * -1;
+	ai->new_k = ai->oldr_k * ai->oldr_k - ai->old_l * ai->old_l + ai->p_k;
+	ai->new_l = 2 * ai->oldr_k * ai->old_l + ai->p_l;
 }
 
-void		formula_mandelcubed(t_dataset *data)
+void	formula_scale(int a, int x, int y, t_dataset *ai)
 {
-	data->oldr_k = data->new_k;
-	data->old_l = data->new_l;
-	data->new_k = (data->oldr_k * data->oldr_k * data->oldr_k) - (data->old_l * data->oldr_k * data->old_l) - (2 * data->oldr_k * data->old_l * data->old_l) + data->p_k;
-	data->new_l = (2 * data->oldr_k * data->oldr_k * data->old_l) - (data->old_l * data->old_l * data->old_l) + data->p_l;
+	x = x - WDT / 2;
+	y = y - HGT / 2;
+	ai->x2 = ((ai->x - x) - WDT) / ((double)HGT * 2);
+	ai->y2 = ((ai->y - y) - HGT) / (((double)WDT * 2) + y);
+	if (a == 1)
+		ai->zoom = ai->zoom / pow(1.005, 50);
+	else
+		ai->zoom = ai->zoom * pow(1.005, 50);
+	ai->m_x = ai->m_x - ai->x2;
+	ai->m_y = ai->m_y - ai->y2;
 }
 
-void		formula_ship(t_dataset *data)
+int		formula_motion(int x, int y, t_dataset *ai)
 {
-	data->oldr_k = data->new_k;
-	data->old_l = data->new_l;
-	data->new_k = data->oldr_k * data->oldr_k - data->old_l * data->old_l + data->p_k;
-	data->new_l = fabs(2 * data->oldr_k * data->old_l) + data->p_l;
-}
-
-void		formula_tricorn(t_dataset *data)
-{
-	data->oldr_k = data->new_k;
-	data->old_l = data->new_l * -1;
-	data->new_k = data->oldr_k * data->oldr_k - data->old_l * data->old_l + data->p_k;
-	data->new_l = 2 * data->oldr_k * data->old_l + data->p_l;
+	if (x > 0 && y > 0 && x < WDT && y < HGT)
+	{
+		if ((ai->fractol == JULIA || ai->fractol == 6) && ai->movemouse == 1)
+		{
+			ai->k = ((x - ai->x) - WDT) / (((double)HGT * 2) + ai->y);
+			ai->l = ((y + ai->y) - HGT) / ((double)WDT * 2);
+			render_scene(ai);
+		}
+	}
+	return (0);
 }

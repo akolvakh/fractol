@@ -112,90 +112,75 @@ typedef struct		s_dataset
 {
 	void			*menu;
 	int				*img_menu;
+	void			*img;
+	char			*img_ptr;
+	void			*mlx;
+	void			*win;
+
+	int				bpp;//
+	int				s1;//
 	int				menu_h;
 	int				menu_w;
 	int				menu_sl;
 	int				menu_end;
 	int				menu_bpp;
-	void			*mlx;
-	void			*win;
-	void			*img;
-	char			*img_ptr;
-	int				bpp;
-	int				s1;
+
 	int				endian;
 	int				color;
 	int				fractol;
-	double			**map;
-	double			x;
-	double			y;
-	
+
 	int				itr;
 	double			zoom;
 
+	double			x;
+	double			y;
 	double			m_x;
 	double			m_y;
+	double			x2;
+	double			y2;
 
+	int				i;
 
-
-	double			click_x;
-	double			click_y;
-
-
-	double			tmp_x;
-	double			tmp_y;
-
-	
 	double			k;
 	double			l;
-
 	double			oldr_k;
 	double			old_l;
 	double			new_k;
 	double			new_l;
-
-	int				i;
 	double			p_k;
 	double			p_l;
+
 	int				movemouse;
-	double			x2;
-	double			y2;
+
 	unsigned char	a[3];
 }					t_dataset;
 
-void				init_formula(t_dataset *data);
-void				init_julia(t_dataset *data);
-void				init_mandel(t_dataset *data);
-void				init_ship(t_dataset *data);
-void				init_main(t_dataset *data);
-int					controls_mouse(int mousekey, int x, int y, t_dataset *data);
-int					controls_buttons(int key, t_dataset *data);
-int					controls_arrows(int key, t_dataset *data);
-int					controls_numbers(int key, t_dataset *data);
-int					controls_keys(int key, t_dataset *data);
-void				formula_tricorn(t_dataset *data);
-void				formula_ship(t_dataset *data);
-void				formula_mandelcubed(t_dataset *data);
-void				formula_mandel(t_dataset *data);
-void				formula_juliacubed(t_dataset *data);
-void				formula_julia(t_dataset *data);
-void				algo_tricorn(t_dataset *data);
-void				algo_julia(t_dataset *data);
-void				algo_mandel(t_dataset *data);
-void				algo_ship(t_dataset *data);
-void				algo_juliacubed(t_dataset *data);
-void				algo_mandelcubed(t_dataset *data);
-void				scale(int a, int x, int y, t_dataset *data);
-int					motion(int x, int y, t_dataset *data);
-void				sys_validator(t_dataset *data, char *input);
+void				init_formula(t_dataset *ai);
+void				init_julia(t_dataset *ai);
+void				init_mandel(t_dataset *ai);
+void				init_ship(t_dataset *ai);
+void				init_main(t_dataset *ai);
+int					controls_mouse(int mousekey, int x, int y, t_dataset *ai);
+int					controls_buttons(int key, t_dataset *ai);
+int					controls_arrows(int key, t_dataset *ai);
+int					controls_numbers(int key, t_dataset *ai);
+int					controls_keys(int key, t_dataset *ai);
+void				formula_fractol(int c, t_dataset *ai);
+void				formula_tricorn(t_dataset *ai);
+void				formula_scale(int a, int x, int y, t_dataset *ai);
+int					formula_motion(int x, int y, t_dataset *ai);
+void				algo_julia(t_dataset *ai);
+void				algo_tricorn(t_dataset *ai);
+void				algo_general(int flag, t_dataset *ai);
+void				sys_validator(t_dataset *ai, char *input);
 void				sys_error(int err);
 void				sys_message(int msg);
-void				sys_option(t_dataset *data);
-int					sys_close(t_dataset *data);
-void				render_display(t_dataset *data);
-void				render_interface(t_dataset *data);
-void				render_scene(t_dataset *data);
-void				render_image(int color, int x, int y, t_dataset *data);
-unsigned int		render_color(double x, double y, int i, t_dataset *data);
+void				sys_option(t_dataset *ai);
+int					sys_close(t_dataset *ai);
+void				render_display(t_dataset *ai);
+void				render_interface(t_dataset *ai);
+void				render_scene(t_dataset *ai);
+void				render_image(int color, int x, int y, t_dataset *ai);
+unsigned int		render_color(double x, double y, int i, t_dataset *ai);
 
 #endif

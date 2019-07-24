@@ -12,63 +12,63 @@
 
 #include "fractol.h"
 
-void			render_image(int color, int x, int y, t_dataset *data)//render color
+void			render_image(int color, int x, int y, t_dataset *ai)
 {
 	int	i;
 
-	i = (x * (data->bpp / 8)) + (y * data->s1);
-	data->img_ptr[i] = color;
-	data->img_ptr[++i] = color >> 8;
-	data->img_ptr[++i] = color >> 16;
+	i = (x * (ai->bpp / 8)) + (y * ai->s1);
+	ai->img_ptr[i] = color;
+	ai->img_ptr[++i] = color >> 8;
+	ai->img_ptr[++i] = color >> 16;
 }
 
-unsigned int	render_color(double x, double y, int i, t_dataset *data)//
+unsigned int	render_color(double x, double y, int i, t_dataset *ai)
 {
 	unsigned int	color;
 	double			magic;
-	double			i2;
+	double			new_i;
 
 	magic = sqrt(x * x + y * y);
-	i2 = i + 1 - (log(2) / magic) / log(2);
-	data->a[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);
-	data->a[1] = (unsigned char)(sin(0.023 * i2 + 2) * 230 + 25);
-	data->a[2] = (unsigned char)(sin(0.01 * i2 + 1) * 230 + 25);
-	color = (data->a[0] << 16) + (data->a[1] << 8) + (data->a[2] + 255);
+	new_i = i + 1 - (log(2) / magic) / log(2);
+	ai->a[0] = (unsigned char)(sin(0.026 * new_i + 4) * 230 + 25);
+	ai->a[1] = (unsigned char)(sin(0.023 * new_i + 2) * 230 + 25);
+	ai->a[2] = (unsigned char)(sin(0.01 * new_i + 1) * 230 + 25);
+	color = (ai->a[0] << 16) + (ai->a[1] << 8) + (ai->a[2] + 255);
 	return (color);
 }
 
-void			render_interface(t_dataset *data)
+void			render_interface(t_dataset *ai)
 {
-	data->menu = mlx_xpm_file_to_image(data->mlx, "./textures/menu.xpm",
-			&(data->menu_w), &(data->menu_h));
-	data->img_menu = (int*)mlx_get_data_addr(data->menu, &(data->menu_bpp),
-			&(data->menu_sl), &(data->menu_end));
-	mlx_put_image_to_window(data->mlx, data->win, data->menu, 0, 0);
-	mlx_string_put(data->mlx, data->win, 50, 19,
-			0xFFFFFF, ft_itoa(data->itr));
-	mlx_string_put(data->mlx, data->win, 70, 47, 0xFFFFFF, ft_itoa(data->zoom));
+	ai->menu = mlx_xpm_file_to_image(ai->mlx, "./textures/menu.xpm",
+			&(ai->menu_w), &(ai->menu_h));
+	ai->img_menu = (int*)mlx_get_data_addr(ai->menu, &(ai->menu_bpp),
+			&(ai->menu_sl), &(ai->menu_end));
+	mlx_put_image_to_window(ai->mlx, ai->win, ai->menu, 0, 0);
+	mlx_string_put(ai->mlx, ai->win, 50, 19,
+			0xFFFFFF, ft_itoa(ai->itr));
+	mlx_string_put(ai->mlx, ai->win, 70, 47, 0xFFFFFF, ft_itoa(ai->zoom));
 }
 
-void			render_scene(t_dataset *data)
+void			render_scene(t_dataset *ai)
 {
-	mlx_destroy_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, WDT, HGT);
-	data->img_ptr = mlx_get_data_addr(data->img, &(data->bpp),
-		&(data->s1), &(data->endian));
-	sys_option(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 100, 0);
-	render_interface(data);
+	mlx_destroy_image(ai->mlx, ai->img);
+	ai->img = mlx_new_image(ai->mlx, WDT, HGT);
+	ai->img_ptr = mlx_get_data_addr(ai->img, &(ai->bpp),
+		&(ai->s1), &(ai->endian));
+	sys_option(ai);
+	mlx_put_image_to_window(ai->mlx, ai->win, ai->img, 100, 0);
+	render_interface(ai);
 }
 
-void			render_display(t_dataset *data)
+void			render_display(t_dataset *ai)
 {
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WDT, HGT, "Fractol");
-	data->img = mlx_new_image(data->mlx, WDT, HGT);
-	render_scene(data);
-	mlx_key_hook(data->win, controls_keys, data);
-	mlx_mouse_hook(data->win, controls_mouse, data);
-	mlx_hook(data->win, CROSS, 0, sys_close, data);
-	mlx_hook(data->win, MOTION, 0, motion, data);
-	mlx_loop(data->mlx);
+	ai->mlx = mlx_init();
+	ai->win = mlx_new_window(ai->mlx, WDT, HGT, "Fractol");
+	ai->img = mlx_new_image(ai->mlx, WDT, HGT);
+	render_scene(ai);
+	mlx_key_hook(ai->win, controls_keys, ai);
+	mlx_mouse_hook(ai->win, controls_mouse, ai);
+	mlx_hook(ai->win, CROSS, 0, sys_close, ai);
+	mlx_hook(ai->win, MOTION, 0, formula_motion, ai);
+	mlx_loop(ai->mlx);
 }

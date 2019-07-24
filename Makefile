@@ -36,7 +36,6 @@ algorithm.c\
 formula.c\
 control.c\
 initialization.c\
-manipulation.c\
 system.c\
 pipeline.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))

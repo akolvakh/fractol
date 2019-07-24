@@ -12,146 +12,85 @@
 
 #include "fractol.h"
 
-void			algo_julia(t_dataset *data)
+void			algo_general(int flag, t_dataset *ai)
 {
-	data->y = -1;
-	while (++data->y < HGT)
+	ai->y = -1;
+	while (++ai->y < HGT)
 	{
-		data->x = -1;
-		while (++data->x < WDT)
+		ai->x = -1;
+		while (++ai->x < WDT)
 		{
-			data->new_k = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->m_x;
-			data->new_l = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->m_y;
-			data->i = -1;
-			while (++data->i < data->itr)
+			ai->p_k = 1.5 * (ai->x - WDT / 2) /
+				(0.5 * ai->zoom * WDT) + ai->m_x;
+			ai->p_l = (ai->y - HGT / 2) / (0.5 * ai->zoom * HGT) + ai->m_y;
+			init_formula(ai);
+			ai->i = -1;
+			while (++ai->i < ai->itr)
 			{
-				formula_julia(data);
-				if ((data->new_k * data->new_k + data->new_l) > 4)
+				formula_fractol(flag, ai);
+				if ((ai->new_k * ai->new_k + ai->new_l * ai->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->itr)
-				render_image(render_color(data->x, data->y,
-						(data->i * data->color), data), data->x, data->y, data);
+			if (ai->i < ai->itr)
+				render_image(render_color(ai->x, ai->y,
+						(ai->i * ai->color), ai), ai->x, ai->y, ai);
 			else
-				render_image(0x000000, data->x, data->y, data);
+				render_image(200, ai->x, ai->y, ai);
 		}
 	}
 }
 
-void			algo_mandelcubed(t_dataset *data)
+void			algo_julia(t_dataset *ai)
 {
-	data->y = -1;
-	while (++data->y < HGT)
+	ai->y = -1;
+	while (++ai->y < HGT)
 	{
-		data->x = -1;
-		while (++data->x < WDT)
+		ai->x = -1;
+		while (++ai->x < WDT)
 		{
-			data->p_k = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->m_x;
-			data->p_l = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->m_y;
-			init_formula(data);
-			data->i = -1;
-			while (++data->i < data->itr)
+			ai->new_k = 1.5 * (ai->x - WDT / 2) /
+				(0.5 * ai->zoom * WDT) + ai->m_x;
+			ai->new_l = (ai->y - HGT / 2) / (0.5 * ai->zoom * HGT) + ai->m_y;
+			ai->i = -1;
+			while (++ai->i < ai->itr)
 			{
-				formula_mandelcubed(data);
-				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
+				formula_fractol(JULIA, ai);
+				if ((ai->new_k * ai->new_k + ai->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->itr)
-				render_image(render_color(data->x, data->y,
-						(data->i * data->color), data), data->x, data->y, data);
+			if (ai->i < ai->itr)
+				render_image(render_color(ai->x, ai->y,
+					(ai->i * ai->color), ai), ai->x, ai->y, ai);
 			else
-				render_image(200, data->x, data->y, data);
+				render_image(0x000000, ai->x, ai->y, ai);
 		}
 	}
 }
 
-void			algo_mandel(t_dataset *data)
+void			algo_tricorn(t_dataset *ai)
 {
-	data->y = -1;
-	while (++data->y < HGT)
+	ai->y = -1;
+	while (++ai->y < HGT)
 	{
-		data->x = -1;
-		while (++data->x < WDT)
+		ai->x = -1;
+		while (++ai->x < WDT)
 		{
-			data->p_k = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->m_x;
-			data->p_l = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->m_y;
-			init_formula(data);
-			data->i = -1;
-			while (++data->i < data->itr)
+			ai->p_k = 1.5 * (ai->x - WDT / 2) /
+				(0.5 * ai->zoom * WDT) + ai->m_x;
+			ai->p_l = (ai->y - HGT / 2) / (0.5 * ai->zoom * HGT) + ai->m_y;
+			init_formula(ai);
+			ai->i = -1;
+			while (++ai->i < ai->itr)
 			{
-				formula_mandel(data);
-				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
+				formula_tricorn(ai);
+				if ((ai->new_k * ai->new_k + ai->new_l * ai->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->itr)
-				render_image(render_color(data->x, data->y,
-						(data->i * data->color), data), data->x, data->y, data);
+			if (ai->i < ai->itr)
+				render_image(render_color(ai->x, ai->y,
+						(ai->i * ai->color), ai), ai->x, ai->y, ai);
 			else
-				render_image(200, data->x, data->y, data);
-		}
-	}
-}
-
-void			algo_ship(t_dataset *data)
-{
-	data->y = -1;
-	while (++data->y < HGT)
-	{
-		data->x = -1;
-		while (++data->x < WDT)
-		{
-			data->p_k = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->m_x;
-			data->p_l = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->m_y;
-			init_formula(data);
-			data->i = -1;
-			while (++data->i < data->itr)
-			{
-				formula_ship(data);
-				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
-					break ;
-			}
-			if (data->i < data->itr)
-				render_image(render_color(data->x, data->y,
-						(data->i * data->color), data), data->x, data->y, data);
-			else
-				render_image(200, data->x, data->y, data);
-		}
-	}
-}
-
-void			algo_tricorn(t_dataset *data)
-{
-	data->y = -1;
-	while (++data->y < HGT)
-	{
-		data->x = -1;
-		while (++data->x < WDT)
-		{
-			data->p_k = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->m_x;
-			data->p_l = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->m_y;
-			init_formula(data);
-			data->i = -1;
-			while (++data->i < data->itr)
-			{
-				formula_tricorn(data);
-				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
-					break ;
-			}
-			if (data->i < data->itr)
-				render_image(render_color(data->x, data->y,
-						(data->i * data->color), data), data->x, data->y, data);
-			else
-				render_image(200, data->x, data->y, data);
+				render_image(200, ai->x, ai->y, ai);
 		}
 	}
 }

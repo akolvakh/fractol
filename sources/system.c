@@ -12,9 +12,9 @@
 
 #include "fractol.h"
 
-int		sys_close(t_dataset *data)
+int		sys_close(t_dataset *ai)
 {
-	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_window(ai->mlx, ai->win);
 	sys_error(FINISH);
 	return (0);
 }
@@ -59,21 +59,21 @@ void	sys_message(int msg)
 		ft_putstr(out);
 }
 
-void	sys_option(t_dataset *data)
+void	sys_option(t_dataset *ai)
 {
-	if (data->fractol == MANDELCUBED)
-		algo_mandelcubed(data);
-	if (data->fractol == TRICORN)
-		algo_tricorn(data);
-	if (data->fractol == SHIP)
-		algo_ship(data);
-	if (data->fractol == MANDEL)
-		algo_mandel(data);
-	if (data->fractol == JULIA)
-		algo_julia(data);
+	if (ai->fractol == MANDELCUBED)
+		algo_general(MANDELCUBED, ai);
+	if (ai->fractol == TRICORN)
+		algo_tricorn(ai);
+	if (ai->fractol == SHIP)
+		algo_general(SHIP, ai);
+	if (ai->fractol == MANDEL)
+		algo_general(MANDEL, ai);
+	if (ai->fractol == JULIA)
+		algo_julia(ai);
 }
 
-void	sys_validator(t_dataset *data, char *input)
+void	sys_validator(t_dataset *ai, char *input)
 {
 	if ((!(ft_strcmp(input, "tricorn") == 0))
 		&& (!(ft_strcmp(input, "ship") == 0))
@@ -83,13 +83,13 @@ void	sys_validator(t_dataset *data, char *input)
 		sys_error(USAGE);
 	ft_putendl(input);
 	if (ft_strcmp(input, "julia") == 0)
-		data->fractol = JULIA;
+		ai->fractol = JULIA;
 	if (ft_strcmp(input, "mandel") == 0)
-		data->fractol = MANDEL;
+		ai->fractol = MANDEL;
 	if (ft_strcmp(input, "ship") == 0)
-		data->fractol = SHIP;
+		ai->fractol = SHIP;
 	if (ft_strcmp(input, "tricorn") == 0)
-		data->fractol = TRICORN;
+		ai->fractol = TRICORN;
 	if (ft_strcmp(input, "mandelcubed") == 0)
-		data->fractol = MANDELCUBED;
+		ai->fractol = MANDELCUBED;
 }
