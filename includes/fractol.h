@@ -61,8 +61,7 @@ enum				e_fractols
 	MANDEL = 2,
 	SHIP = 3,
 	TRICORN = 4,
-	JULIACUBED = 5,
-	MANDELCUBED = 6,
+	MANDELCUBED = 5
 };
 
 enum				e_colors

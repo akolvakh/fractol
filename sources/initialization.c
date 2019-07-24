@@ -19,7 +19,7 @@ void	init_julia(t_dataset *data)
 	data->defre = -0.7;
 	data->defim = 0.27015;
 	data->iteration = 15;
-	data->zoom = 1;
+	data->zoom = 0.5;
 }
 
 void	init_mandel(t_dataset *data)
@@ -56,8 +56,6 @@ void	init_main(t_dataset *data)
 		init_ship(data);
 	if (data->fractol == TRICORN)
 		init_mandel(data);
-	if (data->fractol == JULIACUBED)
-		init_julia(data);
 	if (data->fractol == MANDELCUBED)
 		init_mandel(data);
 }

@@ -12,33 +12,6 @@
 
 #include "fractol.h"////
 
-void			algo_juliacubed(t_dataset *data)
-{
-	data->y = -1;
-	while (++data->y < HEIGHT)
-	{
-		data->x = -1;
-		while (++data->x < WIDTH)
-		{
-			data->newre = 1.5 * (data->x - WIDTH / 2) /
-				(0.5 * data->zoom * WIDTH) + data->movex;
-			data->newim = (data->y - HEIGHT / 2) /
-				(0.5 * data->zoom * HEIGHT) + data->movey;
-			data->i = -1;
-			while (++data->i < data->iteration)
-			{
-				formula_juliacubed(data);
-				if ((data->newre * data->newre + data->newim) > 4)
-					break ;
-			}
-			if (data->i < data->iteration)
-				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
-			else
-				render_image(0x000000, data->x, data->y, data);
-		}
-	}
-}
-
 void			algo_julia(t_dataset *data)
 {
 	data->y = -1;

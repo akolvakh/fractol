@@ -32,7 +32,7 @@ void	sys_error(int error)
 	|| (error == INPUT && (msg = "ERROR: too much input\n"))
 	|| (error == FINISH && (msg = "MESSAGE: Exit the program\n"))
 	|| (error == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
-				"4. tricorn\n5. juliacubed \n6. mandelcubed\n"
+				"4. tricorn\n5. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
@@ -46,7 +46,7 @@ void	sys_message(int message)
 	char *msg;
 
 	if ((message == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
-				"4. tricorn\n5. juliacubed \n6. mandelcubed\n"
+				"4. tricorn\n5. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
@@ -63,8 +63,6 @@ void	sys_option(t_dataset *data)
 {
 	if (data->fractol == MANDELCUBED)
 		algo_mandelcubed(data);
-	if (data->fractol == JULIACUBED)
-		algo_juliacubed(data);
 	if (data->fractol == TRICORN)
 		algo_tricorn(data);
 	if (data->fractol == SHIP)
@@ -81,7 +79,6 @@ void	sys_validator(t_dataset *data, char *input)///
 		&& (!(ft_strcmp(input, "ship") == 0))
 		&& (!(ft_strcmp(input, "julia") == 0))
 		&& (!(ft_strcmp(input, "mandel") == 0))
-		&& (!(ft_strcmp(input, "juliacubed") == 0))
 		&& (!(ft_strcmp(input, "mandelcubed") == 0)))
 		sys_error(USAGE);
 	ft_putendl(input);
@@ -93,8 +90,6 @@ void	sys_validator(t_dataset *data, char *input)///
 		data->fractol = SHIP;
 	if (ft_strcmp(input, "tricorn") == 0)
 		data->fractol = TRICORN;
-	if (ft_strcmp(input, "juliacubed") == 0)
-		data->fractol = JULIACUBED;
 	if (ft_strcmp(input, "mandelcubed") == 0)
 		data->fractol = MANDELCUBED;
 }
