@@ -19,44 +19,44 @@ int		sys_close(t_dataset *data)
 	return (0);
 }
 
-void	sys_error(int error)
+void	sys_error(int err)
 {
-	char *msg;
+	char *out;
 
-	if ((error == MAP && (msg = "ERROR: invalid map\n"))
-	|| (error == MLX && (msg = "ERROR: can't initialize mlx\n"))
-	|| (error == WIN && (msg = "ERROR: can't create window\n"))
-	|| (error == VALUE && (msg = "ERROR: invalid value\n"))
-	|| (error == FILE && (msg = "ERROR: can't open file\n"))
-	|| (error == MALLOC && (msg = "ERROR: can't malloc memory\n"))
-	|| (error == INPUT && (msg = "ERROR: too much input\n"))
-	|| (error == FINISH && (msg = "MESSAGE: Exit the program\n"))
-	|| (error == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
+	if ((err == MAP && (out = "ERROR: invalid map\n"))
+	|| (err == MLX && (out = "ERROR: can't initialize mlx\n"))
+	|| (err == WIN && (out = "ERROR: can't create window\n"))
+	|| (err == VALUE && (out = "ERROR: invalid value\n"))
+	|| (err == FILE && (out = "ERROR: can't open file\n"))
+	|| (err == MALLOC && (out = "ERROR: can't malloc memory\n"))
+	|| (err == INPUT && (out = "ERROR: too much input\n"))
+	|| (err == FINISH && (out = "MESSAGE: Exit the program\n"))
+	|| (err == USAGE && (out = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
 				"4. tricorn\n5. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
 				"Color Change: Num Key 1-3\nHue Change: Num Key 4 & 5")))
-		ft_putstr(msg);
+		ft_putstr(out);
 	exit(-1);
 }
 
-void	sys_message(int message)
+void	sys_message(int msg)
 {
-	char *msg;
+	char *out;
 
-	if ((message == USAGE && (msg = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
+	if ((msg == USAGE && (out = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
 				"4. tricorn\n5. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
 				"Color Change: Num Key 1-3\nHue Change: Num Key 4 & 5"))
-	|| (message == START && (msg = "MESSAGE: Start the game\n"))
-	|| (message == LEFT && (msg = "MESSAGE: Left\n"))
-	|| (message == RIGHT && (msg = "MESSAGE: Right\n"))
-	|| (message == UP && (msg = "MESSAGE: Up\n"))
-	|| (message == DOWN && (msg = "MESSAGE: Down\n")))
-		ft_putstr(msg);
+	|| (msg == START && (out = "MESSAGE: Start the game\n"))
+	|| (msg == LEFT && (out = "MESSAGE: Left\n"))
+	|| (msg == RIGHT && (out = "MESSAGE: Right\n"))
+	|| (msg == UP && (out = "MESSAGE: Up\n"))
+	|| (msg == DOWN && (out = "MESSAGE: Down\n")))
+		ft_putstr(out);
 }
 
 void	sys_option(t_dataset *data)

@@ -129,23 +129,34 @@ typedef struct		s_dataset
 	double			**map;
 	double			x;
 	double			y;
+	
+	int				itr;
 	double			zoom;
-	double			movex;
-	double			movey;
-	double			clickx;
-	double			clicky;
-	double			tmpx;
-	double			tmpy;
-	double			defre;
-	double			defim;
-	double			oldre;
-	double			oldim;
-	double			newre;
-	double			newim;
-	int				iteration;
+
+	double			m_x;
+	double			m_y;
+
+
+
+	double			click_x;
+	double			click_y;
+
+
+	double			tmp_x;
+	double			tmp_y;
+
+	
+	double			k;
+	double			l;
+
+	double			oldr_k;
+	double			old_l;
+	double			new_k;
+	double			new_l;
+
 	int				i;
-	double			pr;
-	double			pi;
+	double			p_k;
+	double			p_l;
 	int				movemouse;
 	double			x2;
 	double			y2;
@@ -177,8 +188,8 @@ void				algo_mandelcubed(t_dataset *data);
 void				scale(int a, int x, int y, t_dataset *data);
 int					motion(int x, int y, t_dataset *data);
 void				sys_validator(t_dataset *data, char *input);
-void				sys_error(int error);
-void				sys_message(int message);
+void				sys_error(int err);
+void				sys_message(int msg);
 void				sys_option(t_dataset *data);
 int					sys_close(t_dataset *data);
 void				render_display(t_dataset *data);

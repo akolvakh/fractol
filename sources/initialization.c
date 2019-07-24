@@ -14,36 +14,36 @@
 
 void	init_julia(t_dataset *data)
 {
-	data->movex = 0;
-	data->movey = 0;
-	data->defre = -0.7;
-	data->defim = 0.27015;
-	data->iteration = 50;
+	data->m_x = 0;
+	data->m_y = 0;
+	data->k = -0.7;
+	data->l = 0.27015;
+	data->itr = 30;
 	data->zoom = 0.5;
 }
 
 void	init_mandel(t_dataset *data)
 {
-	data->movex = 0;
-	data->movey = 0;
-	data->iteration = 15;
+	data->m_x = 0;
+	data->m_y = 0;
+	data->itr = 15;
 	data->zoom = 0.5;
 }
 
 void	init_ship(t_dataset *data)
 {
-	data->movex = 0;
-	data->movey = 0;
-	data->iteration = 15;
+	data->m_x = 0;
+	data->m_y = 0;
+	data->itr = 15;
 	data->zoom = 0.5;
 }
 
 void	init_formula(t_dataset *data)
 {
-	data->oldim = 0;
-	data->oldre = data->oldim;
-	data->newim = data->oldre;
-	data->newre = data->newim;
+	data->old_l = 0;
+	data->oldr_k = data->old_l;
+	data->new_l = data->oldr_k;
+	data->new_k = data->new_l;
 }
 
 void	init_main(t_dataset *data)

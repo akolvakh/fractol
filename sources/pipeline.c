@@ -45,7 +45,7 @@ void			render_interface(t_dataset *data)
 			&(data->menu_sl), &(data->menu_end));
 	mlx_put_image_to_window(data->mlx, data->win, data->menu, 0, 0);
 	mlx_string_put(data->mlx, data->win, 50, 19,
-			0xFFFFFF, ft_itoa(data->iteration));
+			0xFFFFFF, ft_itoa(data->itr));
 	mlx_string_put(data->mlx, data->win, 70, 47, 0xFFFFFF, ft_itoa(data->zoom));
 }
 

@@ -20,18 +20,18 @@ void			algo_julia(t_dataset *data)
 		data->x = -1;
 		while (++data->x < WDT)
 		{
-			data->newre = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->movex;
-			data->newim = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->movey;
+			data->new_k = 1.5 * (data->x - WDT / 2) /
+				(0.5 * data->zoom * WDT) + data->m_x;
+			data->new_l = (data->y - HGT / 2) /
+				(0.5 * data->zoom * HGT) + data->m_y;
 			data->i = -1;
-			while (++data->i < data->iteration)
+			while (++data->i < data->itr)
 			{
 				formula_julia(data);
-				if ((data->newre * data->newre + data->newim) > 4)
+				if ((data->new_k * data->new_k + data->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->iteration)
+			if (data->i < data->itr)
 				render_image(render_color(data->x, data->y,
 						(data->i * data->color), data), data->x, data->y, data);
 			else
@@ -48,19 +48,19 @@ void			algo_mandelcubed(t_dataset *data)
 		data->x = -1;
 		while (++data->x < WDT)
 		{
-			data->pr = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->movex;
-			data->pi = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->movey;
+			data->p_k = 1.5 * (data->x - WDT / 2) /
+				(0.5 * data->zoom * WDT) + data->m_x;
+			data->p_l = (data->y - HGT / 2) /
+				(0.5 * data->zoom * HGT) + data->m_y;
 			init_formula(data);
 			data->i = -1;
-			while (++data->i < data->iteration)
+			while (++data->i < data->itr)
 			{
 				formula_mandelcubed(data);
-				if ((data->newre * data->newre + data->newim * data->newim) > 4)
+				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->iteration)
+			if (data->i < data->itr)
 				render_image(render_color(data->x, data->y,
 						(data->i * data->color), data), data->x, data->y, data);
 			else
@@ -77,19 +77,19 @@ void			algo_mandel(t_dataset *data)
 		data->x = -1;
 		while (++data->x < WDT)
 		{
-			data->pr = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->movex;
-			data->pi = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->movey;
+			data->p_k = 1.5 * (data->x - WDT / 2) /
+				(0.5 * data->zoom * WDT) + data->m_x;
+			data->p_l = (data->y - HGT / 2) /
+				(0.5 * data->zoom * HGT) + data->m_y;
 			init_formula(data);
 			data->i = -1;
-			while (++data->i < data->iteration)
+			while (++data->i < data->itr)
 			{
 				formula_mandel(data);
-				if ((data->newre * data->newre + data->newim * data->newim) > 4)
+				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->iteration)
+			if (data->i < data->itr)
 				render_image(render_color(data->x, data->y,
 						(data->i * data->color), data), data->x, data->y, data);
 			else
@@ -106,19 +106,19 @@ void			algo_ship(t_dataset *data)
 		data->x = -1;
 		while (++data->x < WDT)
 		{
-			data->pr = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->movex;
-			data->pi = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->movey;
+			data->p_k = 1.5 * (data->x - WDT / 2) /
+				(0.5 * data->zoom * WDT) + data->m_x;
+			data->p_l = (data->y - HGT / 2) /
+				(0.5 * data->zoom * HGT) + data->m_y;
 			init_formula(data);
 			data->i = -1;
-			while (++data->i < data->iteration)
+			while (++data->i < data->itr)
 			{
 				formula_ship(data);
-				if ((data->newre * data->newre + data->newim * data->newim) > 4)
+				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->iteration)
+			if (data->i < data->itr)
 				render_image(render_color(data->x, data->y,
 						(data->i * data->color), data), data->x, data->y, data);
 			else
@@ -135,19 +135,19 @@ void			algo_tricorn(t_dataset *data)
 		data->x = -1;
 		while (++data->x < WDT)
 		{
-			data->pr = 1.5 * (data->x - WDT / 2) /
-				(0.5 * data->zoom * WDT) + data->movex;
-			data->pi = (data->y - HGT / 2) /
-				(0.5 * data->zoom * HGT) + data->movey;
+			data->p_k = 1.5 * (data->x - WDT / 2) /
+				(0.5 * data->zoom * WDT) + data->m_x;
+			data->p_l = (data->y - HGT / 2) /
+				(0.5 * data->zoom * HGT) + data->m_y;
 			init_formula(data);
 			data->i = -1;
-			while (++data->i < data->iteration)
+			while (++data->i < data->itr)
 			{
 				formula_tricorn(data);
-				if ((data->newre * data->newre + data->newim * data->newim) > 4)
+				if ((data->new_k * data->new_k + data->new_l * data->new_l) > 4)
 					break ;
 			}
-			if (data->i < data->iteration)
+			if (data->i < data->itr)
 				render_image(render_color(data->x, data->y,
 						(data->i * data->color), data), data->x, data->y, data);
 			else

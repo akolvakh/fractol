@@ -15,13 +15,13 @@
 int		controls_arrows(int key, t_dataset *data)
 {
 	if (key == UP_ARROW)
-		data->movey -= .2 / data->zoom;
+		data->m_y -= .2 / data->zoom;
 	else if (key == DOWN_ARROW)
-		data->movey += .2 / data->zoom;
+		data->m_y += .2 / data->zoom;
 	else if (key == RIGHT_ARROW)
-		data->movex += .2 / data->zoom;
+		data->m_x += .2 / data->zoom;
 	else if (key == LEFT_ARROW)
-		data->movex -= .2 / data->zoom;
+		data->m_x -= .2 / data->zoom;
 	return (0);
 }
 
@@ -34,9 +34,9 @@ int		controls_buttons(int key, t_dataset *data)
 	else if (key == PAGE_DOWN)
 		data->zoom *= pow(1.001, 70);
 	else if (key == PLUS)
-		data->iteration += 5;
+		data->itr += 5;
 	else if (key == MINUS)
-		data->iteration -= 5;
+		data->itr -= 5;
 	else if (key == SPACE)
 		init_main(data);
 	return (0);
@@ -87,7 +87,7 @@ int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 		else if (mousekey == SCROLL_UP)
 			scale(0, x, y, data);
 		else if (mousekey == LEFT_CLICK)
-			data->iteration += 3;
+			data->itr += 3;
 		else if (mousekey == RIGHT_CLICK)
 		{
 			if (data->movemouse == 1)
