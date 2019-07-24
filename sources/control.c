@@ -73,11 +73,11 @@ int		controls_mouse(int mousekey, int x, int y, t_dataset *data)
 	if (x < WIDTH && y < HEIGHT && x > 0 && y > 0)
 	{
 		if (mousekey == SCROLL_DOWN)
-			zoomin(x, y, data);
+			scale_up(x, y, data);
 		else if (mousekey == SCROLL_UP)
-			zoomout(x, y, data);
+			scale_down(x, y, data);
 		else if (mousekey == LEFT_CLICK)
-			data->iteration += 5;
+			data->iteration += 3;
 		else if (mousekey == RIGHT_CLICK)
 		{
 			if (data->movemouse == 1)

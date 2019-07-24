@@ -16,10 +16,10 @@ void	init_julia(t_dataset *data)
 {
 	data->movex = 0;
 	data->movey = 0;
+	data->defre = -0.7;
+	data->defim = 0.27015;
 	data->iteration = 15;
-	data->zoom = 0.5;
-	data->cre = -0.7;
-	data->cim = 0.27015;
+	data->zoom = 1;
 }
 
 void	init_mandel(t_dataset *data)
@@ -36,6 +36,14 @@ void	init_ship(t_dataset *data)
 	data->movey = 0;
 	data->iteration = 15;
 	data->zoom = 0.5;
+}
+
+void	init_formula(t_dataset *data)
+{
+	data->oldim = 0;
+	data->oldre = data->oldim;
+	data->newim = data->oldre;
+	data->newre = data->newim;
 }
 
 void	init_main(t_dataset *data)

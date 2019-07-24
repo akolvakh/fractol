@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol.h"///
 
 void			render_image(int color, int x, int y, t_dataset *data)//
 {
@@ -24,17 +24,16 @@ void			render_image(int color, int x, int y, t_dataset *data)//
 
 unsigned int	render_color(double x, double y, int i, t_dataset *data)
 {
-	unsigned int	color;
-	double			magic;
-	double			i2;
+	unsigned int	color;//
+	double			magic;//
+	double			i2;//
 
 	magic = sqrt(x * x + y * y);
 	i2 = i + 1 - (log(2) / magic) / log(2);
-	data->chan[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);
-	data->chan[1] = (unsigned char)(sin(0.023 * i2 + 2) * 230 + 25);
-	data->chan[2] = (unsigned char)(sin(0.01 * i2 + 1) * 230 + 25);
-	color = (data->chan[0] << 16) +
-			(data->chan[1] << 8) + (data->chan[2] + 255);
+	data->a[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);//
+	data->a[1] = (unsigned char)(sin(0.023 * i2 + 2) * 230 + 25);
+	data->a[2] = (unsigned char)(sin(0.01 * i2 + 1) * 230 + 25);
+	color = (data->a[0] << 16) + (data->a[1] << 8) + (data->a[2] + 255);
 	return (color);
 }
 

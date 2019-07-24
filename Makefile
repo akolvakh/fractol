@@ -34,7 +34,7 @@ SRC_DIR = ./sources/
 SRC_LIST = main.c\
 algo.c\
 formula.c\
-controls.c\
+control.c\
 initialization.c\
 manipulation.c\
 system.c\

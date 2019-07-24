@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol.h"////
 
-void			algo_juliacubed(t_dataset *data)//algo
+void			algo_juliacubed(t_dataset *data)
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
@@ -29,18 +29,17 @@ void			algo_juliacubed(t_dataset *data)//algo
 			{
 				formula_juliacubed(data);
 				if ((data->newre * data->newre + data->newim) > 4)
-					break ;//
+					break ;
 			}
 			if (data->i < data->iteration)
-				render_image(render_color(data->x, data->y,
-						(data->i * data->color), data), data->x, data->y, data);
+				render_image(render_color(data->x, data->y, (data->i * data->color), data), data->x, data->y, data);
 			else
 				render_image(0x000000, data->x, data->y, data);
 		}
 	}
 }
 
-void			algo_julia(t_dataset *data)//algo
+void			algo_julia(t_dataset *data)
 {
 	data->y = -1;
 	while (++data->y < HEIGHT)
@@ -80,7 +79,7 @@ void			algo_mandelcubed(t_dataset *data)
 				(0.5 * data->zoom * WIDTH) + data->movex;
 			data->pi = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
-			formula_mandelassign(data);
+			init_formula(data);
 			data->i = -1;
 			while (++data->i < data->iteration)
 			{
@@ -109,7 +108,7 @@ void			algo_mandel(t_dataset *data)
 				(0.5 * data->zoom * WIDTH) + data->movex;
 			data->pi = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
-			formula_mandelassign(data);
+			init_formula(data);
 			data->i = -1;
 			while (++data->i < data->iteration)
 			{
@@ -138,7 +137,7 @@ void			algo_ship(t_dataset *data)
 				(0.5 * data->zoom * WIDTH) + data->movex;
 			data->pi = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
-			formula_mandelassign(data);
+			init_formula(data);
 			data->i = -1;
 			while (++data->i < data->iteration)
 			{
@@ -167,7 +166,7 @@ void			algo_tricorn(t_dataset *data)
 				(0.5 * data->zoom * WIDTH) + data->movex;
 			data->pi = (data->y - HEIGHT / 2) /
 				(0.5 * data->zoom * HEIGHT) + data->movey;
-			formula_mandelassign(data);
+			init_formula(data);
 			data->i = -1;
 			while (++data->i < data->iteration)
 			{

@@ -10,23 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol.h"////
 
 void		formula_julia(t_dataset *data)
 {
 	data->oldre = data->newre;
 	data->oldim = data->newim;
-	data->newre = data->oldre * data->oldre -
-			data->oldim * data->oldim + data->cre;
-	data->newim = 2 * data->oldre * data->oldim + data->cim;
+	data->newre = data->oldre * data->oldre - data->oldim * data->oldim + data->defre;
+	data->newim = 2 * data->oldre * data->oldim + data->defim;
 }
 
 void		formula_juliacubed(t_dataset *data)
 {
 	data->oldre = data->newre;
 	data->oldim = data->newim;
-	data->newre = (data->oldre * data->oldre * data->oldre) - (data->oldim * data->oldim * data->oldre) - (2 * data->oldre * data->oldim * data->oldim) + data->cre;
-	data->newim = (3 * data->oldre * data->oldre * data->oldim) - (data->oldim * data->oldim * data->oldim) + data->cim;
+	data->newre = (data->oldre * data->oldre * data->oldre) - (data->oldim * data->oldim * data->oldre) - (2 * data->oldre * data->oldim * data->oldim) + data->defre;
+	data->newim = (3 * data->oldre * data->oldre * data->oldim) - (data->oldim * data->oldim * data->oldim) + data->defim;
 }
 
 void		formula_mandel(t_dataset *data)
@@ -65,26 +64,4 @@ void		formula_tricorn(t_dataset *data)
 	data->newre = data->oldre * data->oldre -
 			data->oldim * data->oldim + data->pr;
 	data->newim = 2 * data->oldre * data->oldim + data->pi;
-}
-
-void		formula_mandelassign(t_dataset *data)
-{
-	data->oldim = 0;
-	data->oldre = data->oldim;
-	data->newim = data->oldre;
-	data->newre = data->newim;
-}
-
-int			isfilled(t_dataset *data, int x, int y)
-{
-	while (x > 0 || y > 0)
-	{
-		if (data->iteration < 5)
-			data->iteration = 5;
-		if (x % (int)data->iteration == 1 && y % (int)data->iteration == 1)
-			return (0);
-		x /= 3;
-		y /= 3;
-	}
-	return (1);
 }

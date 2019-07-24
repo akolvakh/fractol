@@ -75,7 +75,7 @@ void	sys_option(t_dataset *data)
 		algo_julia(data);
 }
 
-void	sys_validator(t_dataset *data, char *input)
+void	sys_validator(t_dataset *data, char *input)///
 {
 	if ((!(ft_strcmp(input, "tricorn") == 0))
 		&& (!(ft_strcmp(input, "ship") == 0))

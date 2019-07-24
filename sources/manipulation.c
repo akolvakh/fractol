@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol.h"///
 
-void	zoomin(int x, int y, t_dataset *data)
+void	scale_up(int x, int y, t_dataset *data)
 {
 	x -= WIDTH / 2;
 	y -= HEIGHT / 2;
@@ -23,7 +23,7 @@ void	zoomin(int x, int y, t_dataset *data)
 	data->movey -= data->y2;
 }
 
-void	zoomout(int x, int y, t_dataset *data)
+void	scale_down(int x, int y, t_dataset *data)
 {
 	x -= WIDTH / 2;
 	y -= HEIGHT / 2;
@@ -42,14 +42,10 @@ int		motion(int x, int y, t_dataset *data)
 		{
 			data->clickx = x;
 			data->clicky = y;
-			data->cre = ((data->clickx - data->x) - WIDTH) / (((double)HEIGHT * 2) + data->y);
-			data->cim = ((data->clicky + data->y) - HEIGHT) / ((double)HEIGHT * 2);
+			data->defre = ((data->clickx - data->x) - WIDTH) / (((double)HEIGHT * 2) + data->y);
+			data->defim = ((data->clicky + data->y) - HEIGHT) / ((double)HEIGHT * 2);
 			render_scene(data);
 		}
-		ft_putendl("HERE4");//
-		ft_putnbr(x);
-		ft_putchar('\n');
-		ft_putnbr(y);
 	}
 	return (0);
 }
