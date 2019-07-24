@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void			render_image(int color, int x, int y, t_dataset *ai)
+void			render_image(int color, int x, int y, t_dataset *ai)//это цвет ргб? или что это вообще такое? как это делать и запиливать?
 {
 	int	i;
 
@@ -22,7 +22,7 @@ void			render_image(int color, int x, int y, t_dataset *ai)
 	ai->img_ptr[++i] = color >> 16;
 }
 
-unsigned int	render_color(double x, double y, int i, t_dataset *ai)
+unsigned int	render_color(double x, double y, int i, t_dataset *ai)//и эта формула откуда? понимать ее, быть готовым и уметь объяснить, разбираться, чтобы оптимизировать, сделать под себя, понять, чтобы суметь ответить и было видно, что я разобрался и это - мое. Понять и все осознать, как с ГНЛ
 {
 	unsigned int	color;
 	double			magic;
@@ -39,14 +39,12 @@ unsigned int	render_color(double x, double y, int i, t_dataset *ai)
 
 void			render_interface(t_dataset *ai)
 {
-	ai->menu = mlx_xpm_file_to_image(ai->mlx, "./textures/menu.xpm",
-			&(ai->menu_w), &(ai->menu_h));
-	ai->img_menu = (int*)mlx_get_data_addr(ai->menu, &(ai->menu_bpp),
-			&(ai->menu_sl), &(ai->menu_end));
+	if(!(ai->menu = mlx_xpm_file_to_image(ai->mlx, "./textures/menu.xpm", &(ai->menu_w), &(ai->menu_h))))
+		sys_error(TEXTURE);
+	ai->img_menu = (int*)mlx_get_data_addr(ai->menu, &(ai->menu_bpp), &(ai->menu_sl), &(ai->menu_end));
 	mlx_put_image_to_window(ai->mlx, ai->win, ai->menu, 0, 0);
-	mlx_string_put(ai->mlx, ai->win, 50, 19,
-			0xFFFFFF, ft_itoa(ai->itr));
-	mlx_string_put(ai->mlx, ai->win, 70, 47, 0xFFFFFF, ft_itoa(ai->zoom));
+	mlx_string_put(ai->mlx, ai->win, 50, 19, WHITE, ft_itoa(ai->itr));
+	mlx_string_put(ai->mlx, ai->win, 70, 47, WHITE, ft_itoa(ai->zoom));
 }
 
 void			render_scene(t_dataset *ai)

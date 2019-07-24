@@ -15,13 +15,13 @@
 int		controls_arrows(int key, t_dataset *ai)
 {
 	if (key == UP_ARROW)
-		ai->m_y -= .2 / ai->zoom;
+		ai->m_y = ai->m_y - .2 / ai->zoom;
 	else if (key == DOWN_ARROW)
-		ai->m_y += .2 / ai->zoom;
+		ai->m_y = ai->m_y + .2 / ai->zoom;
 	else if (key == RIGHT_ARROW)
-		ai->m_x += .2 / ai->zoom;
+		ai->m_x = ai->m_x + .2 / ai->zoom;
 	else if (key == LEFT_ARROW)
-		ai->m_x -= .2 / ai->zoom;
+		ai->m_x = ai->m_y - .2 / ai->zoom;
 	return (0);
 }
 
@@ -30,13 +30,13 @@ int		controls_buttons(int key, t_dataset *ai)
 	if (key == ESC)
 		sys_error(FINISH);
 	else if (key == PAGE_UP)
-		ai->zoom /= pow(1.001, 70);
+		ai->zoom = ai->zoom / pow(1.001, 70);
 	else if (key == PAGE_DOWN)
-		ai->zoom *= pow(1.001, 70);
+		ai->zoom = ai->zoom * pow(1.001, 70);
 	else if (key == PLUS)
-		ai->itr += 5;
+		ai->itr = ai->itr + 5;
 	else if (key == MINUS)
-		ai->itr -= 5;
+		ai->itr = ai->itr - 5;
 	else if (key == SPACE)
 		init_main(ai);
 	return (0);
@@ -89,12 +89,7 @@ int		controls_mouse(int mousekey, int x, int y, t_dataset *ai)
 		else if (mousekey == LEFT_CLICK)
 			ai->itr += 3;
 		else if (mousekey == RIGHT_CLICK)
-		{
-			if (ai->movemouse == 1)
-				ai->movemouse = 0;
-			else
-				ai->movemouse = 1;
-		}
+			ai->movemouse = (ai->movemouse == 1) ? 0 : 1;
 		render_scene(ai);
 	}
 	return (0);

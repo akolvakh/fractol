@@ -98,6 +98,7 @@ enum				e_errors
 	INPUT = 8,
 	START = 9,
 	FINISH = 10,
+	TEXTURE = 11
 };
 
 enum				e_moves
@@ -167,7 +168,7 @@ int					controls_numbers(int key, t_dataset *ai);
 int					controls_keys(int key, t_dataset *ai);
 void				formula_fractol(int c, t_dataset *ai);
 void				formula_tricorn(t_dataset *ai);
-void				formula_scale(int a, int x, int y, t_dataset *ai);
+void				formula_scale(int flag, int x, int y, t_dataset *ai);
 int					formula_motion(int x, int y, t_dataset *ai);
 void				algo_julia(t_dataset *ai);
 void				algo_tricorn(t_dataset *ai);

@@ -31,6 +31,7 @@ void	sys_error(int err)
 	|| (err == MALLOC && (out = "ERROR: can't malloc memory\n"))
 	|| (err == INPUT && (out = "ERROR: too much input\n"))
 	|| (err == FINISH && (out = "MESSAGE: Exit the program\n"))
+	|| (err == TEXTURE && (out = "ERROR: invalid textures\n"))
 	|| (err == USAGE && (out = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
 				"4. tricorn\n5. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
@@ -64,7 +65,7 @@ void	sys_option(t_dataset *ai)
 	if (ai->fractol == MANDELCUBED)
 		algo_general(MANDELCUBED, ai);
 	if (ai->fractol == TRICORN)
-		algo_tricorn(ai);
+		algo_general(TRICORN, ai);
 	if (ai->fractol == SHIP)
 		algo_general(SHIP, ai);
 	if (ai->fractol == MANDEL)
@@ -84,12 +85,12 @@ void	sys_validator(t_dataset *ai, char *input)
 	ft_putendl(input);
 	if (ft_strcmp(input, "julia") == 0)
 		ai->fractol = JULIA;
-	if (ft_strcmp(input, "mandel") == 0)
+	else if (ft_strcmp(input, "mandel") == 0)
 		ai->fractol = MANDEL;
-	if (ft_strcmp(input, "ship") == 0)
+	else if (ft_strcmp(input, "ship") == 0)
 		ai->fractol = SHIP;
-	if (ft_strcmp(input, "tricorn") == 0)
+	else if (ft_strcmp(input, "tricorn") == 0)
 		ai->fractol = TRICORN;
-	if (ft_strcmp(input, "mandelcubed") == 0)
+	else if (ft_strcmp(input, "mandelcubed") == 0)
 		ai->fractol = MANDELCUBED;
 }
