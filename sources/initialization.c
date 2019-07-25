@@ -14,36 +14,39 @@
 
 void	init_julia(t_dataset *ai)
 {
-	ai->m_x = 0;
-	ai->m_y = 0;
-	ai->k = -0.7;
-	ai->l = 0.27015;
+	ai->crd_x = 0;
+	ai->crd_y = 0;
+	ai->pos_x = -0.7;
+	ai->pos_y = 0.27015;
 	ai->itr = 30;
 	ai->zoom = 0.5;
+	ai->color = 1;
 }
 
 void	init_mandel(t_dataset *ai)
 {
-	ai->m_x = 0;
-	ai->m_y = 0;
+	ai->crd_x = 0;
+	ai->crd_y = 0;
 	ai->itr = 15;
 	ai->zoom = 0.5;
+	ai->color = 1;
 }
 
 void	init_ship(t_dataset *ai)
 {
-	ai->m_x = 0;
-	ai->m_y = 0;
+	ai->crd_x = 0;
+	ai->crd_y = 0;
 	ai->itr = 15;
 	ai->zoom = 0.5;
+	ai->color = 1;
 }
 
 void	init_formula(t_dataset *ai)
 {
-	ai->old_l = 0;
-	ai->oldr_k = ai->old_l;
-	ai->new_l = ai->oldr_k;
-	ai->new_k = ai->new_l;
+	ai->old_y = 0;
+	ai->old_x = ai->old_y;
+	ai->def_y = ai->old_x;
+	ai->def_x = ai->def_y;
 }
 
 void	init_main(t_dataset *ai)

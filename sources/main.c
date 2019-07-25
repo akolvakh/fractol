@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 		sys_error(INPUT);
 	if (!(ai = (t_dataset *)ft_memalloc(sizeof(t_dataset))))
 		sys_error(MALLOC);
-	ai->color = 1;
 	if (argc == 2)
 	{
 		sys_validator(ai, argv[1]);

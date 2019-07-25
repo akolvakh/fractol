@@ -76,8 +76,8 @@ enum				e_colors
 	RED = 0xCC0000,
 	GREEN = 0x98FB98,
 	BLUE = 0x0000FF,
-	DEF_COLOR = 0xF5B201,
-	UNDEF_COLOR = 0x247812
+	DARK_GREEN = 0x247812,
+	BLACK = 0x000000
 };
 
 enum				e_display
@@ -118,42 +118,40 @@ typedef struct		s_dataset
 	void			*mlx;
 	void			*win;
 
-	int				bpp;//
+	int				bits;//
 	int				s1;//
+
 	int				menu_h;
 	int				menu_w;
 	int				menu_sl;
 	int				menu_end;
-	int				menu_bpp;
+	int				menu_bits;
 
 	int				endian;
-	int				color;
-	int				fractol;
+	double			color;
 
 	int				itr;
 	double			zoom;
 
 	double			x;
 	double			y;
-	double			m_x;
-	double			m_y;
-	double			x2;
-	double			y2;
+	double			crd_x;
+	double			crd_y;
+	double			scale_x;
+	double			scale_y;
+	double			new_x;
+	double			new_y;
+	double			pos_x;
+	double			pos_y;
+	double			old_x;
+	double			old_y;
+	double			def_x;
+	double			def_y;
 
 	int				i;
-
-	double			k;
-	double			l;
-	double			oldr_k;
-	double			old_l;
-	double			new_k;
-	double			new_l;
-	double			p_k;
-	double			p_l;
-
+	int				fractol;
 	int				movemouse;
-
-	unsigned char	a[3];
+	unsigned char	a[3];//
 }					t_dataset;
 
 void				init_formula(t_dataset *ai);

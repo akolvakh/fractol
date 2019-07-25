@@ -15,13 +15,13 @@
 int		controls_arrows(int key, t_dataset *ai)
 {
 	if (key == UP_ARROW)
-		ai->m_y = ai->m_y - .2 / ai->zoom;
+		ai->crd_y = ai->crd_y - .2 / ai->zoom;
 	else if (key == DOWN_ARROW)
-		ai->m_y = ai->m_y + .2 / ai->zoom;
+		ai->crd_y = ai->crd_y + .2 / ai->zoom;
 	else if (key == RIGHT_ARROW)
-		ai->m_x = ai->m_x + .2 / ai->zoom;
+		ai->crd_x = ai->crd_x + .2 / ai->zoom;
 	else if (key == LEFT_ARROW)
-		ai->m_x = ai->m_y - .2 / ai->zoom;
+		ai->crd_x = ai->crd_y - .2 / ai->zoom;
 	return (0);
 }
 
@@ -57,13 +57,13 @@ int		controls_numbers(int key, t_dataset *ai)
 	else if (key == SIX)
 		ai->color = 1;
 	else if (key == SEVEN)
-		ai->color = GREEN;
+		ai->color = 10;
 	else if (key == EIGTH)
-		ai->color = 1000;
+		ai->color = 100;
 	else if (key == TAB)
-		ai->color += 35;
+		ai->color = ai->color + 0.15;
 	else if (key == SHIFT)
-		ai->color -= 15;
+		ai->color = ai->color - 0.15;
 	return (0);
 }
 
