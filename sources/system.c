@@ -15,8 +15,8 @@
 int		sys_close(t_dataset *ai)
 {
 	mlx_destroy_window(ai->mlx, ai->win);
-	sys_error(FINISH);
 	free(ai);//
+	sys_error(FINISH);
 	return (0);
 }
 
@@ -35,12 +35,13 @@ void	sys_error(int err)
 	|| (err == INPUT && (out = "ERROR: too much input\n"))
 	|| (err == FINISH && (out = "MESSAGE: Exit the program\n"))
 	|| (err == TEXTURE && (out = "ERROR: invalid textures\n"))
-	|| (err == USAGE && (out = "Fractols:\n1. julia\n2. mandel\n3. ship\n"
+	|| (err == USAGE && (out = "ERROR: invalid input. Read it ->\n\n"
+				"Fractols:\n1. julia\n2. mandel\n3. ship\n"
 				"4. tricorn\n5. mandelcubed\n"
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
-				"Color Change: Num Key 1-3\nHue Change: Num Key 4 & 5")))
+				"Color Change: Num Key 6-8\nHue Change: Tab & Shift\n")))
 		ft_putstr(out);
 	exit(-1);
 }
@@ -54,7 +55,7 @@ void	sys_message(int msg)
 				"Controls:\nMove: Arrow Keys\nZoom: Page Up & Page Down\n"
 				"Mouse Zoom: Scrool Wheel\nIteration: Left Click & (+ -) Keys\n"
 				"Zoom Reset: Space Bar\nJulia Activate: Right Click\n"
-				"Color Change: Num Key 1-3\nHue Change: Num Key 4 & 5"))
+				"Color Change: Num Key 6-8\nHue Change: Tab & Shift\n"))
 	|| (msg == START && (out = "MESSAGE: Start the game\n"))
 	|| (msg == LEFT && (out = "MESSAGE: Left\n"))
 	|| (msg == RIGHT && (out = "MESSAGE: Right\n"))
@@ -79,13 +80,6 @@ void	sys_option(t_dataset *ai)
 
 void	sys_validator(t_dataset *ai, char *input)
 {
-	if ((!(ft_strcmp(input, "tricorn") == 0))
-		&& (!(ft_strcmp(input, "ship") == 0))
-		&& (!(ft_strcmp(input, "julia") == 0))
-		&& (!(ft_strcmp(input, "mandel") == 0))
-		&& (!(ft_strcmp(input, "mandelcubed") == 0)))
-		sys_error(USAGE);
-	ft_putendl(input);
 	if (ft_strcmp(input, "julia") == 0)
 		ai->fractol = JULIA;
 	else if (ft_strcmp(input, "mandel") == 0)
@@ -96,4 +90,11 @@ void	sys_validator(t_dataset *ai, char *input)
 		ai->fractol = TRICORN;
 	else if (ft_strcmp(input, "mandelcubed") == 0)
 		ai->fractol = MANDELCUBED;
+	else if ((!(ft_strcmp(input, "tricorn") == 0))
+		&& (!(ft_strcmp(input, "ship") == 0))
+		&& (!(ft_strcmp(input, "julia") == 0))
+		&& (!(ft_strcmp(input, "mandel") == 0))
+		&& (!(ft_strcmp(input, "mandelcubed") == 0)))
+		sys_error(USAGE);
+	ft_putendl(input);
 }

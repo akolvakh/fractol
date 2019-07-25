@@ -16,10 +16,10 @@ int	main(int argc, char **argv)
 {
 	t_dataset *ai;
 
-	if (argc < 2)
-		sys_message(USAGE);
 	if (argc > 2)
 		sys_error(INPUT);
+	else if (argc < 2)
+		sys_message(USAGE);
 	if (!(ai = (t_dataset *)ft_memalloc(sizeof(t_dataset))))
 		sys_error(MALLOC);
 	if (argc == 2)

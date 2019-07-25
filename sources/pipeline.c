@@ -14,10 +14,12 @@
 
 void			render_image(int color, int x, int y, t_dataset *ai)//это цвет ргб? или что это вообще такое? как это делать и запиливать?/ int i / render_gradient
 {
-	ai->i = (x * (ai->bits / 8)) + (y * ai->s1);
-	ai->img_ptr[ai->i] = color;
-	ai->img_ptr[++ai->i] = color >> 8;
-	ai->img_ptr[++ai->i] = color >> 16;
+	int j;
+
+	j = (x * (ai->bits / 8)) + (y * ai->s1);
+	ai->img_ptr[j] = color;
+	ai->img_ptr[++j] = color >> 8;
+	ai->img_ptr[++j] = color >> 16;
 }
 
 unsigned int	render_color(double x, double y, int i, t_dataset *ai)//и эта формула откуда? понимать ее, быть готовым и уметь объяснить, разбираться, чтобы оптимизировать, сделать под себя, понять, чтобы суметь ответить и было видно, что я разобрался и это - мое. Понять и все осознать, как с ГНЛ
@@ -28,10 +30,10 @@ unsigned int	render_color(double x, double y, int i, t_dataset *ai)//и эта �
 
 	magic = sqrt(x * x + y * y);
 	new_i = i + 1 - (log(2) / magic) / log(2);
-	ai->a[0] = (unsigned char)(sin(0.026 * new_i + 4) * 230 + 25);
-	ai->a[1] = (unsigned char)(sin(0.023 * new_i + 2) * 230 + 25);
-	ai->a[2] = (unsigned char)(sin(0.01 * new_i + 1) * 230 + 25);
-	color = (ai->a[0] << 16) + (ai->a[1] << 8) + (ai->a[2] + 255);
+	ai->rgb[0] = (unsigned char)(sin(0.026 * new_i + 4) * 230 + 25);
+	ai->rgb[1] = (unsigned char)(sin(0.023 * new_i + 2) * 230 + 25);
+	ai->rgb[2] = (unsigned char)(sin(0.01 * new_i + 1) * 230 + 25);
+	color = (ai->rgb[0] << 16) + (ai->rgb[1] << 8) + (ai->rgb[2] + 255);
 	return (color);
 }
 

@@ -15,29 +15,29 @@
 int		controls_arrows(int key, t_dataset *ai)
 {
 	if (key == UP_ARROW)
-		ai->moveY = ai->moveY - .2 / ai->zoom;
-	else if (key == DOWN_ARROW)
-		ai->moveY = ai->moveY + .2 / ai->zoom;
-	else if (key == RIGHT_ARROW)
-		ai->moveX = ai->moveX + .2 / ai->zoom;
-	else if (key == LEFT_ARROW)
-		ai->moveX = ai->moveY - .2 / ai->zoom;
+		ai->mvy = ai->mvy - .2 / ai->zoom;
+	if (key == DOWN_ARROW)
+		ai->mvy = ai->mvy + .2 / ai->zoom;
+	if (key == RIGHT_ARROW)
+		ai->mvx = ai->mvx + .2 / ai->zoom;
+	if (key == LEFT_ARROW)
+		ai->mvx = ai->mvx - .2 / ai->zoom;
 	return (0);
 }
 
 int		controls_buttons(int key, t_dataset *ai)
 {
 	if (key == ESC)
-		sys_error(FINISH);
-	else if (key == PAGE_UP)
+		sys_close(ai);
+	if (key == PAGE_UP)
 		ai->zoom = ai->zoom / pow(1.001, 70);
-	else if (key == PAGE_DOWN)
+	if (key == PAGE_DOWN)
 		ai->zoom = ai->zoom * pow(1.001, 70);
-	else if (key == PLUS)
+	if (key == PLUS)
 		ai->itr = ai->itr + 5;
-	else if (key == MINUS)
+	if (key == MINUS)
 		ai->itr = ai->itr - 5;
-	else if (key == SPACE)
+	if (key == SPACE)
 		init_main(ai);
 	return (0);
 }
@@ -69,8 +69,6 @@ int		controls_numbers(int key, t_dataset *ai)
 
 int		controls_keys(int key, t_dataset *ai)
 {
-	if (!(ai->win))
-		return (0);
 	controls_numbers(key, ai);
 	controls_arrows(key, ai);
 	controls_buttons(key, ai);
@@ -80,17 +78,14 @@ int		controls_keys(int key, t_dataset *ai)
 
 int		controls_mouse(int mousekey, int x, int y, t_dataset *ai)
 {
-	if (x < WDT && y < HGT && x > 0 && y > 0)
-	{
-		if (mousekey == SCROLL_DOWN)
-			formula_scale(1, x, y, ai);
-		else if (mousekey == SCROLL_UP)
-			formula_scale(0, x, y, ai);
-		else if (mousekey == LEFT_CLICK)
-			ai->itr += 3;
-		else if (mousekey == RIGHT_CLICK)
-			ai->movemouse = (ai->movemouse == 1) ? 0 : 1;
-		render_scene(ai);
-	}
+	if (mousekey == SCROLL_DOWN)
+		formula_scale(1, x, y, ai);
+	else if (mousekey == SCROLL_UP)
+		formula_scale(0, x, y, ai);
+	else if (mousekey == LEFT_CLICK)
+		ai->itr = ai->itr + 3;
+	else if (mousekey == RIGHT_CLICK)
+		ai->mvmouse = (ai->mvmouse == 1) ? 0 : 1;
+	render_scene(ai);
 	return (0);
 }

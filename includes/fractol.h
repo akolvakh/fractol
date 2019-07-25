@@ -24,6 +24,7 @@ enum				e_keys
 	TAB = 48,
 	SPACE = 49,
 	SHIFT = 257,
+	MOTION = 6,
 	A = 0,
 	S = 1,
 	D = 2,
@@ -54,8 +55,7 @@ enum				e_keys
 	UP_ARROW = 126,
 	DOWN_ARROW = 125,
 	RIGHT_ARROW = 124,
-	LEFT_ARROW = 123,
-	MOTION = 6
+	LEFT_ARROW = 123
 };
 
 enum				e_fractols
@@ -100,7 +100,7 @@ enum				e_errors
 	FINISH = 10,
 	TEXTURE = 11,
 	IMG = 12,
-	IMG_PTR
+	IMG_PTR = 13
 };
 
 enum				e_moves
@@ -119,41 +119,34 @@ typedef struct		s_dataset
 	char			*img_ptr;
 	void			*mlx;
 	void			*win;
-
-	int				bits;//
-	int				s1;//
-
+	unsigned char	rgb[3];
+	int				bits;
+	int				s1;
 	int				menu_h;
 	int				menu_w;
 	int				menu_sl;
 	int				menu_end;
 	int				menu_bits;
-
 	int				endian;
 	double			color;
-
 	int				itr;
 	double			zoom;
-
 	double			x;
 	double			y;
-	double			moveX;
-	double			moveY;
+	double			mvx;
+	double			mvy;
 	double			scale_x;
 	double			scale_y;
 	double			new_x;
 	double			new_y;
 	double			re;
 	double			im;
-	double			oldRe;
-	double			oldIm;
-	double			newRe;
-	double			newIm;
-
-	int				i;
+	double			o_re;
+	double			o_im;
+	double			n_re;
+	double			n_im;
 	int				fractol;
-	int				movemouse;
-	unsigned char	a[3];//
+	int				mvmouse;
 }					t_dataset;
 
 void				init_formula(t_dataset *ai);
