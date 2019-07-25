@@ -29,10 +29,10 @@ void			algo_general(int flag, t_dataset *ai)
 			while (++i < ai->itr && ((ai->n_re * ai->n_re + ai->n_im * ai->n_im) < 4))
 				formula_fractol(flag, ai);
 			if (i < ai->itr)
-				render_image(render_color(ai->x, ai->y,
+				render_color(render_gradient(ai->x, ai->y,
 						(i * ai->color), ai), ai->x, ai->y, ai);
 			else
-				render_image(BLACK, ai->x, ai->y, ai);
+				render_color(BLACK, ai->x, ai->y, ai);
 		}
 	}
 }
@@ -53,10 +53,10 @@ void			algo_julia(t_dataset *ai)
 			while (++i < ai->itr && ((ai->n_re * ai->n_re + ai->n_im) < 4))
 				formula_fractol(JULIA, ai);
 			if (i < ai->itr)
-				render_image(render_color(ai->x, ai->y,
+				render_color(render_gradient(ai->x, ai->y,
 					(i * ai->color), ai), ai->x, ai->y, ai);
 			else
-				render_image(BLACK, ai->x, ai->y, ai);
+				render_color(BLACK, ai->x, ai->y, ai);
 		}
 	}
 }

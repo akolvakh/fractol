@@ -121,7 +121,7 @@ typedef struct		s_dataset
 	void			*win;
 	unsigned char	rgb[3];
 	int				bits;
-	int				s1;
+	int				var;
 	int				menu_h;
 	int				menu_w;
 	int				menu_sl;
@@ -147,6 +147,10 @@ typedef struct		s_dataset
 	double			n_im;
 	int				fractol;
 	int				mvmouse;
+	double			calc;
+	double			j;
+	int				i;
+	unsigned int	grad;
 }					t_dataset;
 
 void				init_formula(t_dataset *ai);
@@ -174,7 +178,7 @@ int					sys_close(t_dataset *ai);
 void				render_display(t_dataset *ai);
 void				render_interface(t_dataset *ai);
 void				render_scene(t_dataset *ai);
-void				render_image(int color, int x, int y, t_dataset *ai);
-unsigned int		render_color(double x, double y, int i, t_dataset *ai);
+void				render_color(int color, int x, int y, t_dataset *ai);
+unsigned int		render_gradient(double x, double y, int i, t_dataset *ai);
 
 #endif

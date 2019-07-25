@@ -12,29 +12,23 @@
 
 #include "fractol.h"
 
-void			render_image(int color, int x, int y, t_dataset *ai)//это цвет ргб? или что это вообще такое? как это делать и запиливать?/ int i / render_gradient
+void			render_color(int color, int x, int y, t_dataset *ai)
 {
-	int j;
-
-	j = (x * (ai->bits / 8)) + (y * ai->s1);
-	ai->img_ptr[j] = color;
-	ai->img_ptr[++j] = color >> 8;
-	ai->img_ptr[++j] = color >> 16;
+	ai->i = (x * (ai->bits / 8)) + (y * ai->var);
+	ai->img_ptr[ai->i] = color;
+	ai->img_ptr[++ai->i] = color >> 8;
+	ai->img_ptr[++ai->i] = color >> 16;
 }
 
-unsigned int	render_color(double x, double y, int i, t_dataset *ai)//и эта формула откуда? понимать ее, быть готовым и уметь объяснить, разбираться, чтобы оптимизировать, сделать под себя, понять, чтобы суметь ответить и было видно, что я разобрался и это - мое. Понять и все осознать, как с ГНЛ
+unsigned int	render_gradient(double x, double y, int i, t_dataset *ai)
 {
-	unsigned int	color;
-	double			magic;
-	double			new_i;
-
-	magic = sqrt(x * x + y * y);
-	new_i = i + 1 - (log(2) / magic) / log(2);
-	ai->rgb[0] = (unsigned char)(sin(0.026 * new_i + 4) * 230 + 25);
-	ai->rgb[1] = (unsigned char)(sin(0.023 * new_i + 2) * 230 + 25);
-	ai->rgb[2] = (unsigned char)(sin(0.01 * new_i + 1) * 230 + 25);
-	color = (ai->rgb[0] << 16) + (ai->rgb[1] << 8) + (ai->rgb[2] + 255);
-	return (color);
+	ai->j = i + 1 - (log(2) / ai->calc) / log(2);
+	ai->calc = sqrt(x * x + y * y);
+	ai->rgb[2] = (unsigned char)(sin(0.01 * ai->j + 1) * 230 + 25);
+	ai->rgb[1] = (unsigned char)(sin(0.023 * ai->j + 2) * 230 + 25);
+	ai->rgb[0] = (unsigned char)(sin(0.026 * ai->j + 4) * 230 + 25);
+	ai->grad = (ai->rgb[0] << 16) + (ai->rgb[1] << 8) + (ai->rgb[2] + 255);
+	return (ai->grad);
 }
 
 void			render_interface(t_dataset *ai)
@@ -54,7 +48,7 @@ void			render_scene(t_dataset *ai)
 	if(!(ai->img = mlx_new_image(ai->mlx, WDT, HGT)))
 		sys_error(IMG);
 	if(!(ai->img_ptr = mlx_get_data_addr(ai->img, &(ai->bits),
-		&(ai->s1), &(ai->endian))))
+		&(ai->var), &(ai->endian))))
 		sys_error(IMG_PTR);
 	sys_option(ai);
 	mlx_put_image_to_window(ai->mlx, ai->win, ai->img, 100, 0);
