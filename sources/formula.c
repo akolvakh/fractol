@@ -14,30 +14,30 @@
 
 void	formula_fractol(int c, t_dataset *ai)
 {
-	ai->old_x = ai->def_x;
-	ai->old_y = (c == TRICORN) ? ai->def_y * -1 :  ai->def_y;
+	ai->oldRe = ai->newRe;
+	ai->oldIm = (c == TRICORN) ? ai->newIm * -1 :  ai->newIm;
 	if (c == JULIA)
 	{
-		ai->def_x = ai->old_x * ai->old_x - ai->old_y * ai->old_y + ai->pos_x;
-		ai->def_y = 2 * ai->old_x * ai->old_y + ai->pos_y;
+		ai->newRe = ai->oldRe * ai->oldRe - ai->oldIm * ai->oldIm + ai->re;
+		ai->newIm = 2 * ai->oldRe * ai->oldIm + ai->im;
 	}
 	else if (c == MANDEL || c == TRICORN)
 	{
-		ai->def_x = ai->old_x * ai->old_x - ai->old_y * ai->old_y + ai->new_x;
-		ai->def_y = 2 * ai->old_x * ai->old_y + ai->new_y;
+		ai->newRe = ai->oldRe * ai->oldRe - ai->oldIm * ai->oldIm + ai->new_x;
+		ai->newIm = 2 * ai->oldRe * ai->oldIm + ai->new_y;
 	}
 	else if (c == MANDELCUBED)
 	{
-		ai->def_x = (ai->old_x * ai->old_x * ai->old_x) -
-			(ai->old_y * ai->old_x * ai->old_y) -
-			(2 * ai->old_x * ai->old_y * ai->old_y) + ai->new_x;
-		ai->def_y = (2 * ai->old_x * ai->old_x * ai->old_y) -
-			(ai->old_y * ai->old_y * ai->old_y) + ai->new_y;
+		ai->newRe = (ai->oldRe * ai->oldRe * ai->oldRe) -
+			(ai->oldIm * ai->oldRe * ai->oldIm) -
+			(2 * ai->oldRe * ai->oldIm * ai->oldIm) + ai->new_x;
+		ai->newIm = (2 * ai->oldRe * ai->oldRe * ai->oldIm) -
+			(ai->oldIm * ai->oldIm * ai->oldIm) + ai->new_y;
 	}
 	else if (c == SHIP)
 	{
-		ai->def_x = ai->old_x * ai->old_x - ai->old_y * ai->old_y + ai->new_x;
-		ai->def_y = fabs(2 * ai->old_x * ai->old_y) + ai->new_y;//fabs?
+		ai->newRe = ai->oldRe * ai->oldRe - ai->oldIm * ai->oldIm + ai->new_x;
+		ai->newIm = fabs(2 * ai->oldRe * ai->oldIm) + ai->new_y;//fabs?
 	}
 }
 
@@ -48,20 +48,20 @@ void	formula_scale(int flag, int x, int y, t_dataset *ai)//тут теперь �
 	ai->scale_x = ((ai->x - x) - WDT) / ((double)HGT * 2);
 	ai->scale_y = ((ai->y - y) - HGT) / (((double)WDT * 2) + y);
 	ai->zoom = (flag == 1) ? ai->zoom / pow(1.005, 50) : ai->zoom * pow(1.005, 50);// /1.3
-	ai->crd_x = ai->crd_x - ai->scale_x;
-	ai->crd_y = ai->crd_y - ai->scale_y;
+	ai->moveX = ai->moveX - ai->scale_x;
+	ai->moveY = ai->moveY - ai->scale_y;
 }
 
 int		formula_motion(int x, int y, t_dataset *ai)
 {
-	if (x > 0 && y > 0 && x < WDT && y < HGT)
-	{
+	//if (x > 0 && y > 0 && x < WDT && y < HGT)
+//	{
 		if ((ai->fractol == JULIA) && ai->movemouse == 1)//|| ai->fractol == 6
 		{
-			ai->pos_x = ((x - ai->x) - WDT) / (((double)HGT * 2) + ai->y);
-			ai->pos_y = ((y + ai->y) - HGT) / ((double)WDT * 2);
-			render_scene(ai);
+			ai->re = ((x - ai->x) - WDT) / (((double)HGT * 2) + ai->y);
+			ai->im = ((y + ai->y) - HGT) / ((double)WDT * 2);
 		}
-	}
+	//}
+	render_scene(ai);
 	return (0);
 }

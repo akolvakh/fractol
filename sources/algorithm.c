@@ -20,16 +20,12 @@ void			algo_general(int flag, t_dataset *ai)
 		ai->x = -1;
 		while (++ai->x < WDT)
 		{
-			ai->new_x = 1.5 * (ai->x - WDT / 2) / (ai->zoom * WDT / 2) + ai->crd_x;
-			ai->new_y = (ai->y - HGT / 2) / (ai->zoom * HGT / 2) + ai->crd_y;
+			ai->new_x = 1.5 * (ai->x - WDT / 2) / (ai->zoom * WDT / 2) + ai->moveX;
+			ai->new_y = (ai->y - HGT / 2) / (ai->zoom * HGT / 2) + ai->moveY;
 			init_formula(ai);
 			ai->i = -1;
-			while (++ai->i < ai->itr)
-			{
+			while (++ai->i < ai->itr && ((ai->newRe * ai->newRe + ai->newIm * ai->newIm) < 4))
 				formula_fractol(flag, ai);
-				if ((ai->def_x * ai->def_x + ai->def_y * ai->def_y) > 4)
-					break ;
-			}
 			if (ai->i < ai->itr)
 				render_image(render_color(ai->x, ai->y,
 						(ai->i * ai->color), ai), ai->x, ai->y, ai);
@@ -47,15 +43,11 @@ void			algo_julia(t_dataset *ai)
 		ai->x = -1;
 		while (++ai->x < WDT)
 		{
-			ai->def_x = 1.5 * (ai->x - WDT / 2) / (ai->zoom * WDT / 2) + ai->crd_x;
-			ai->def_y = (ai->y - HGT / 2) / (ai->zoom * HGT / 2) + ai->crd_y;
+			ai->newRe = 1.5 * (ai->x - WDT / 2) / (ai->zoom * WDT / 2) + ai->moveX;
+			ai->newIm = (ai->y - HGT / 2) / (ai->zoom * HGT / 2) + ai->moveY;
 			ai->i = -1;
-			while (++ai->i < ai->itr)
-			{
+			while (++ai->i < ai->itr && ((ai->newRe * ai->newRe + ai->newIm) < 4))
 				formula_fractol(JULIA, ai);
-				if ((ai->def_x * ai->def_x + ai->def_y) > 4)//
-					break ;
-			}
 			if (ai->i < ai->itr)
 				render_image(render_color(ai->x, ai->y,
 					(ai->i * ai->color), ai), ai->x, ai->y, ai);

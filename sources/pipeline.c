@@ -39,7 +39,8 @@ void			render_interface(t_dataset *ai)
 {
 	if(!(ai->menu = mlx_xpm_file_to_image(ai->mlx, "./textures/menu.xpm", &(ai->menu_w), &(ai->menu_h))))
 		sys_error(TEXTURE);
-	ai->img_menu = (int*)mlx_get_data_addr(ai->menu, &(ai->menu_bits), &(ai->menu_sl), &(ai->menu_end));
+	if(!(ai->img_menu = (int*)mlx_get_data_addr(ai->menu, &(ai->menu_bits), &(ai->menu_sl), &(ai->menu_end))))
+		sys_error(IMG_PTR);
 	mlx_put_image_to_window(ai->mlx, ai->win, ai->menu, 0, 0);
 	mlx_string_put(ai->mlx, ai->win, 50, 19, WHITE, ft_itoa(ai->itr));
 	mlx_string_put(ai->mlx, ai->win, 70, 47, WHITE, ft_itoa(ai->zoom));
@@ -48,9 +49,11 @@ void			render_interface(t_dataset *ai)
 void			render_scene(t_dataset *ai)
 {
 	mlx_destroy_image(ai->mlx, ai->img);
-	ai->img = mlx_new_image(ai->mlx, WDT, HGT);
-	ai->img_ptr = mlx_get_data_addr(ai->img, &(ai->bits),
-		&(ai->s1), &(ai->endian));
+	if(!(ai->img = mlx_new_image(ai->mlx, WDT, HGT)))
+		sys_error(IMG);
+	if(!(ai->img_ptr = mlx_get_data_addr(ai->img, &(ai->bits),
+		&(ai->s1), &(ai->endian))))
+		sys_error(IMG_PTR);
 	sys_option(ai);
 	mlx_put_image_to_window(ai->mlx, ai->win, ai->img, 100, 0);
 	render_interface(ai);
@@ -58,9 +61,12 @@ void			render_scene(t_dataset *ai)
 
 void			render_display(t_dataset *ai)
 {
-	ai->mlx = mlx_init();
-	ai->win = mlx_new_window(ai->mlx, WDT, HGT, "Fractol");
-	ai->img = mlx_new_image(ai->mlx, WDT, HGT);
+	if(!(ai->mlx = mlx_init()))
+		sys_error(MLX);
+	if(!(ai->win = mlx_new_window(ai->mlx, WDT, HGT, "Fractol")))
+		sys_error(WIN);
+	if(!(ai->img = mlx_new_image(ai->mlx, WDT, HGT)))
+		sys_error(IMG);
 	render_scene(ai);
 	mlx_key_hook(ai->win, controls_keys, ai);
 	mlx_mouse_hook(ai->win, controls_mouse, ai);

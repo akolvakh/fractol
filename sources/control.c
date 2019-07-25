@@ -15,13 +15,13 @@
 int		controls_arrows(int key, t_dataset *ai)
 {
 	if (key == UP_ARROW)
-		ai->crd_y = ai->crd_y - .2 / ai->zoom;
+		ai->moveY = ai->moveY - .2 / ai->zoom;
 	else if (key == DOWN_ARROW)
-		ai->crd_y = ai->crd_y + .2 / ai->zoom;
+		ai->moveY = ai->moveY + .2 / ai->zoom;
 	else if (key == RIGHT_ARROW)
-		ai->crd_x = ai->crd_x + .2 / ai->zoom;
+		ai->moveX = ai->moveX + .2 / ai->zoom;
 	else if (key == LEFT_ARROW)
-		ai->crd_x = ai->crd_y - .2 / ai->zoom;
+		ai->moveX = ai->moveY - .2 / ai->zoom;
 	return (0);
 }
 

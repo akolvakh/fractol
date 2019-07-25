@@ -16,6 +16,7 @@ int		sys_close(t_dataset *ai)
 {
 	mlx_destroy_window(ai->mlx, ai->win);
 	sys_error(FINISH);
+	free(ai);//
 	return (0);
 }
 
@@ -25,8 +26,10 @@ void	sys_error(int err)
 
 	if ((err == MAP && (out = "ERROR: invalid map\n"))
 	|| (err == MLX && (out = "ERROR: can't initialize mlx\n"))
+	|| (err == IMG && (out = "ERROR: can't create image mlx\n"))
 	|| (err == WIN && (out = "ERROR: can't create window\n"))
 	|| (err == VALUE && (out = "ERROR: invalid value\n"))
+	|| (err == IMG_PTR && (out = "ERROR: can't get image ptr\n"))
 	|| (err == FILE && (out = "ERROR: can't open file\n"))
 	|| (err == MALLOC && (out = "ERROR: can't malloc memory\n"))
 	|| (err == INPUT && (out = "ERROR: too much input\n"))

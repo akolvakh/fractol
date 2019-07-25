@@ -98,7 +98,9 @@ enum				e_errors
 	INPUT = 8,
 	START = 9,
 	FINISH = 10,
-	TEXTURE = 11
+	TEXTURE = 11,
+	IMG = 12,
+	IMG_PTR
 };
 
 enum				e_moves
@@ -135,18 +137,18 @@ typedef struct		s_dataset
 
 	double			x;
 	double			y;
-	double			crd_x;
-	double			crd_y;
+	double			moveX;
+	double			moveY;
 	double			scale_x;
 	double			scale_y;
 	double			new_x;
 	double			new_y;
-	double			pos_x;
-	double			pos_y;
-	double			old_x;
-	double			old_y;
-	double			def_x;
-	double			def_y;
+	double			re;
+	double			im;
+	double			oldRe;
+	double			oldIm;
+	double			newRe;
+	double			newIm;
 
 	int				i;
 	int				fractol;
